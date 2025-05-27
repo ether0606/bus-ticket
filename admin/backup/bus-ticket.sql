@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 26, 2025 at 08:34 AM
+-- Generation Time: May 27, 2025 at 06:39 AM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.2.0
 
@@ -20,6 +20,83 @@ SET time_zone = "+00:00";
 --
 -- Database: `bus-ticket`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `admin`
+--
+
+CREATE TABLE `admin` (
+  `id` int(11) NOT NULL,
+  `name` varchar(100) DEFAULT NULL,
+  `contact_no` varchar(20) DEFAULT NULL,
+  `email` varchar(100) DEFAULT NULL,
+  `address` varchar(255) DEFAULT NULL,
+  `password` varchar(255) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `area`
+--
+
+CREATE TABLE `area` (
+  `id` int(11) NOT NULL,
+  `name` varchar(100) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `bus`
+--
+
+CREATE TABLE `bus` (
+  `id` int(11) NOT NULL,
+  `bus_company_id` int(11) NOT NULL,
+  `registration_no` varchar(50) DEFAULT NULL,
+  `bus_type` varchar(50) DEFAULT NULL,
+  `note` text DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `buscompany`
+--
+
+CREATE TABLE `buscompany` (
+  `id` int(11) NOT NULL,
+  `name` varchar(100) DEFAULT NULL,
+  `contact_no` varchar(20) DEFAULT NULL,
+  `address` varchar(255) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `counter`
+--
+
+CREATE TABLE `counter` (
+  `id` int(11) DEFAULT NULL,
+  `name` varchar(255) DEFAULT NULL,
+  `address` varchar(255) DEFAULT NULL,
+  `contact_no` varchar(255) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `payment_type`
+--
+
+CREATE TABLE `payment_type` (
+  `id` int(11) DEFAULT NULL,
+  `name` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -61,6 +138,108 @@ CREATE TABLE `role_access` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `route`
+--
+
+CREATE TABLE `route` (
+  `id` int(11) NOT NULL,
+  `to_area` int(11) DEFAULT NULL,
+  `from_area` int(11) DEFAULT NULL,
+  `break_area` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `schedule`
+--
+
+CREATE TABLE `schedule` (
+  `id` int(11) DEFAULT NULL,
+  `route_id` int(11) DEFAULT NULL,
+  `bus_id` int(11) DEFAULT NULL,
+  `start_counter_id` int(11) DEFAULT NULL,
+  `end_counter_id` int(11) DEFAULT NULL,
+  `start_time_date` datetime DEFAULT NULL,
+  `has_complimantory` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `schedule_counter`
+--
+
+CREATE TABLE `schedule_counter` (
+  `id` int(11) DEFAULT NULL,
+  `schedule_id` int(11) DEFAULT NULL,
+  `counter_id` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `seat`
+--
+
+CREATE TABLE `seat` (
+  `id` int(11) DEFAULT NULL,
+  `bud_id` int(11) DEFAULT NULL,
+  `seat_type` varchar(255) DEFAULT NULL,
+  `seat_number` varchar(255) DEFAULT NULL,
+  `seat_row` int(11) DEFAULT NULL,
+  `seat_column` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `seatfare`
+--
+
+CREATE TABLE `seatfare` (
+  `id` int(11) DEFAULT NULL,
+  `route_id` int(11) DEFAULT NULL,
+  `seat_id` int(11) DEFAULT NULL,
+  `fare` decimal(10,0) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `ticket`
+--
+
+CREATE TABLE `ticket` (
+  `id` int(11) DEFAULT NULL,
+  `user_id` int(11) DEFAULT NULL,
+  `schedule_id` int(11) DEFAULT NULL,
+  `ticket_qty` int(11) DEFAULT NULL,
+  `total_price` decimal(10,0) DEFAULT NULL,
+  `discount` decimal(10,0) DEFAULT NULL,
+  `vat` decimal(10,0) DEFAULT NULL,
+  `grand_total` decimal(10,0) DEFAULT NULL,
+  `ticket_status` int(11) DEFAULT NULL,
+  `payment_type` int(11) DEFAULT NULL,
+  `payment_status` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `ticke_details`
+--
+
+CREATE TABLE `ticke_details` (
+  `id` int(11) DEFAULT NULL,
+  `ticket_id` int(11) DEFAULT NULL,
+  `seat_id` int(11) DEFAULT NULL,
+  `price` decimal(10,0) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `user`
 --
 
@@ -91,6 +270,31 @@ INSERT INTO `user` (`id`, `name`, `contact_no`, `email`, `password`, `is_active`
 --
 
 --
+-- Indexes for table `admin`
+--
+ALTER TABLE `admin`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `area`
+--
+ALTER TABLE `area`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `bus`
+--
+ALTER TABLE `bus`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `fk_bus_company` (`bus_company_id`);
+
+--
+-- Indexes for table `buscompany`
+--
+ALTER TABLE `buscompany`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `role`
 --
 ALTER TABLE `role`
@@ -114,6 +318,30 @@ ALTER TABLE `user`
 --
 
 --
+-- AUTO_INCREMENT for table `admin`
+--
+ALTER TABLE `admin`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `area`
+--
+ALTER TABLE `area`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `bus`
+--
+ALTER TABLE `bus`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `buscompany`
+--
+ALTER TABLE `buscompany`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT for table `role`
 --
 ALTER TABLE `role`
@@ -130,6 +358,16 @@ ALTER TABLE `role_access`
 --
 ALTER TABLE `user`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `bus`
+--
+ALTER TABLE `bus`
+  ADD CONSTRAINT `fk_bus_company` FOREIGN KEY (`bus_company_id`) REFERENCES `buscompany` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
