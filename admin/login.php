@@ -1,3 +1,9 @@
+<?php 
+session_start();
+require_once('class/crud.php');
+$mysqli= new crud();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -31,15 +37,16 @@
               </div>
               <h4>Hello! let's get started</h4>
               <h6 class="font-weight-light">Sign in to continue.</h6>
-              <form class="pt-3">
+              <form class="pt-3" method="post"  action="">
                 <div class="form-group">
-                  <input type="email" class="form-control form-control-lg" id="exampleInputEmail1" placeholder="Username">
+                  <input type="email" name="email" class="form-control form-control-lg" id="exampleInputEmail1" placeholder="Username">
                 </div>
                 <div class="form-group">
-                  <input type="password" class="form-control form-control-lg" id="exampleInputPassword1" placeholder="Password">
+                  <input type="password" name="password" class="form-control form-control-lg" id="exampleInputPassword1" placeholder="Password">
                 </div>
                 <div class="mt-3">
-                  <a class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn" href="assets/index.html">SIGN IN</a>
+                  <button type="submit" class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn" >Sign In</button>
+                  <!-- <a class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn" href="http://localhost/bus-ticket-master/admin/dashboard.php">SIGN IN</a> -->
                 </div>
                 <div class="my-2 d-flex justify-content-between align-items-center">
                   <div class="form-check">
@@ -56,6 +63,30 @@
                 </div>
               </form>
             </div>
+              <?php
+                      if($_POST){
+                        $_POST['password']=sha1($_POST['password']);
+                        $res=$mysqli->common_select('user','name,contact_no,email,is_active,role_id,status',$_POST);
+                        
+                        if($res['error']==0){
+                          if($res['data'][0]->is_active==0){
+                            echo "<script>alert('Your account is not active')</script>";
+                          }else if($res['data'][0]->status==0){
+                            echo "<script>alert('Your account is blocked')</script>";
+                          }else{
+                            $where=array('id'=>$res['data'][0]->role_id); 
+                            $role=$mysqli->common_select('role','name,slug',$where);
+                            $_SESSION['role']=$role['data'][0];
+                            $_SESSION['user']=$res['data'][0];
+                            $_SESSION['log_user_status']=true;
+                            echo "<script>location.href='http://localhost/bus-ticket/admin/dashboard.php'</script>";
+                          }
+                        }else{
+                          echo "<script>alert('Login Failed')</script>";
+                        }
+                        
+                      }
+                    ?>
           </div>
         </div>
       </div>

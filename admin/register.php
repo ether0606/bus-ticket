@@ -1,3 +1,8 @@
+<?php 
+require_once('class/crud.php');
+$mysqli= new crud();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -31,14 +36,17 @@
               </div>
               <h4>New here?</h4>
               <h6 class="font-weight-light">Signing up is easy. It only takes a few steps</h6>
-              <form class="pt-3">
+              <form class="pt-3" method="post" action="">
                 <div class="form-group">
-                  <input type="text" class="form-control form-control-lg" id="exampleInputUsername1" placeholder="Username">
+                  <input type="text" name="name" class="form-control form-control-lg" id="name" placeholder="Username">
                 </div>
                 <div class="form-group">
-                  <input type="email" class="form-control form-control-lg" id="exampleInputEmail1" placeholder="Email">
+                  <input type="text" name="contact_no" class="form-control form-control-lg" id="contact_no" placeholder="+880123456789">
                 </div>
                 <div class="form-group">
+                  <input type="email" name="email" class="form-control form-control-lg" id="exampleInputEmail1" placeholder="Email">
+                </div>
+                <!-- <div class="form-group">
                   <select class="form-control form-control-lg" id="exampleFormControlSelect2">
                     <option>Country</option>
                     <option>United States of America</option>
@@ -47,9 +55,13 @@
                     <option>Germany</option>
                     <option>Argentina</option>
                   </select>
+                </div> -->
+                <div class="form-group">
+                  <input type="password" name="password" class="form-control form-control-lg" id="exampleInputPassword1" placeholder="Password">
                 </div>
                 <div class="form-group">
-                  <input type="password" class="form-control form-control-lg" id="exampleInputPassword1" placeholder="Password">
+                  <input type="password" name="c_password" class="form-control" id="c_password" placeholder="Confirm Password">
+                  
                 </div>
                 <div class="mb-4">
                   <div class="form-check">
@@ -60,13 +72,32 @@
                   </div>
                 </div>
                 <div class="mt-3">
-                  <a class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn" href="assets/index.html">SIGN UP</a>
+                  <!-- <a class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn" href="assets/dashboard.php">SIGN UP</a> -->
+                  <button type="submit" class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn">Sign Up</button>
                 </div>
                 <div class="text-center mt-4 font-weight-light">
                   Already have an account? <a href="login.php" class="text-primary">Login</a>
                 </div>
               </form>
             </div>
+             <?php
+                      if($_POST){
+                        if($_POST['c_password'] !== $_POST['password']){
+                          echo "Password and confirm password are not same";
+                          return false;
+                        }
+                        $_POST['role_id']=2;
+                        $_POST['password']=sha1($_POST['password']);
+                        unset($_POST['c_password']);
+                        $res=$mysqli->common_insert('user',$_POST);
+                        if($res){
+                          header('Location:login.php');
+                        }
+                        else{
+                          echo "Something went wrong";
+                        }
+                      }
+                    ?>
           </div>
         </div>
       </div>
