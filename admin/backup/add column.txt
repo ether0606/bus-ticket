@@ -1,0 +1,1 @@
+ALTER TABLE `counter` ADD `status` INT NOT NULL DEFAULT '1' COMMENT '1 active 0 deleted' AFTER `contact_no`, ADD `created_at` TIMESTAMP NULL AFTER `status`, ADD `updated_at` TIMESTAMP NULL AFTER `created_at`, ADD `created_by` INT NULL AFTER `updated_at`, ADD `updated_by` INT NULL AFTER `created_by`;

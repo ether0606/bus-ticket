@@ -1,7 +1,5 @@
 <?php 
-session_start();
-require_once('class/crud.php');
-$mysqli= new crud();
+require_once('include/connection.php');
 ?>
 
 <!DOCTYPE html>
@@ -64,9 +62,10 @@ $mysqli= new crud();
               </form>
             </div>
               <?php
+             
                       if($_POST){
                         $_POST['password']=sha1($_POST['password']);
-                        $res=$mysqli->common_select('user','name,contact_no,email,is_active,role_id,status',$_POST);
+                        $res=$mysqli->common_select('admins','id,name,contact_no,email,is_active,role_id,status',$_POST);
                         
                         if($res['error']==0){
                           if($res['data'][0]->is_active==0){
@@ -79,7 +78,7 @@ $mysqli= new crud();
                             $_SESSION['role']=$role['data'][0];
                             $_SESSION['user']=$res['data'][0];
                             $_SESSION['log_user_status']=true;
-                            echo "<script>location.href='http://localhost/bus-ticket/admin/dashboard.php'</script>";
+                            echo "<script>location.href='".$baseurl."admin/index.php'</script>";
                           }
                         }else{
                           echo "<script>alert('Login Failed')</script>";

@@ -1,6 +1,6 @@
 <?php 
-require_once('class/crud.php');
-$mysqli= new crud();
+session_start();
+require_once('include/connection.php');
 ?>
 
 <!DOCTYPE html>
@@ -89,7 +89,7 @@ $mysqli= new crud();
                         $_POST['role_id']=2;
                         $_POST['password']=sha1($_POST['password']);
                         unset($_POST['c_password']);
-                        $res=$mysqli->common_insert('user',$_POST);
+                        $res=$mysqli->common_insert('admins',$_POST);
                         if($res){
                           header('Location:login.php');
                         }
