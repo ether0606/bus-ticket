@@ -29,19 +29,23 @@
                                             </thead>
                                             <tbody>
                                                 <?php
-                                                    $data = $mysqli->common_select('route');
+                                                    $data = $mysqli->common_query('SELECT *, (SELECT name from area WHERE area.id=route.to_area) as to_a,(SELECT name from area WHERE area.id=route.from_area) as from_a, (SELECT name from area WHERE area.id=route.break_area) as break_a FROM `route` where route.status=1');
                                                     if(!$data['error']) {
                                                         foreach($data['data'] as $i => $d) {
-                                                            $from_area = $mysqli->common_select('area', '*', ['id' => $d->from_area]);
-                                                            $to_area = $mysqli->common_select('area', '*', ['id' => $d->to_area]);
-                                                            $break_area = $d->break_area ? $mysqli->common_select('area', '*', ['id' => $d->break_area]) : null;
                                                 ?>
                                                 <tr>
                                                     <td><?= ++$i ?></td>
+<<<<<<< HEAD
                                                     <td><?= !$from_area['error'] ? $from_area['data'][0]->name : '' ?></td>
                                                     <td><?= !$to_area['error'] ? $to_area['data'][0]->name : '' ?></td>
                                                     <td><?= ($break_area && !$break_area['error']) ? $break_area['data'][0]->name : 'N/A' ?></td>
                                                 
+=======
+                                                    <td><?= $d->from_a ?? '' ?></td>
+                                                    <td><?= $d->to_a ?? '' ?></td>
+                                                    <td><?= $d->break_a ?? 'N/A' ?></td>
+                                                    <td><?= $d->status ? 'Active' : 'Inactive' ?></td>
+>>>>>>> 41d7fe648c8161fbcad77d8d2ce9831ac02094c8
                                                     <td>
                                                         <a href="<?= $baseurl?>admin/route_edit.php?id=<?= $d->id ?>" class="btn btn-info btn-xs" title="Edit">
                                                             <i class="fa fa-edit"></i>

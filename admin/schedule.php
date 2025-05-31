@@ -36,18 +36,23 @@
                                 </thead>
                                 <tbody>
                                     <?php
-                                        $data=$mysqli->common_select('schedule');
+                                        $data=$mysqli->common_query('SELECT *, (SELECT name from area where area.id=route.to_area) as to_area,
+(SELECT name from area where area.id=route.from_area) as from_area,
+bus.registration_no,
+(SELECT counter.name from counter WHERE counter.id=schedule.start_counter_id) as start_counter,
+(SELECT counter.name from counter WHERE counter.id=schedule.end_counter_id) as end_counter
+FROM `schedule` JOIN route on route.id=schedule.route_id JOIN bus on bus.id=schedule.bus_id where schedule.status=1');
                                         if(!$data['error']){
                                             foreach($data['data'] as $i=>$d){
                                     ?>
                                             <tr>
                                                 <td><?= ++$i ?></td>
-                                                <td><?= $d->route_id ?></td>
-                                                <td><?= $d->bus_id?></td>
-                                                <td><?= $d->start_counter_id?></td>
-                                                <td><?= $d->end_counter_id?></td>
+                                                <td><?= $d->from_area ?> - <?= $d->to_area ?></td>
+                                                <td><?= $d->registration_no ?></td>
+                                                <td><?= $d->start_counter ?></td>
+                                                <td><?= $d->end_counter ?></td>
                                                 <td><?= $d->start_time_date	?></td>
-                                                <td><?= $d->has_complimantory?></td>
+                                                <td><?= $d->has_complimantory ? "YES":"NO" ?></td>
                                                 <td>
                                                     <a href="<?= $baseurl?>admin/schedule_edit.php?id=<?= $d->id ?>" class="btn btn-info btn-xs" title="Edit">
                                                         <i class="fa fa-edit"></i>
