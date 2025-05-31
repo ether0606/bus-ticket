@@ -18,6 +18,8 @@
           <li class="nav-item"> <a class="nav-link" href="<?= $baseurl ?>admin/bus_company.php">Bus Company</a></li>
           <li class="nav-item"> <a class="nav-link" href="<?= $baseurl ?>admin/bus.php">Bus</a></li>
           <li class="nav-item"> <a class="nav-link" href="<?= $baseurl ?>admin/schedule.php">Schedule</a></li>
+          <li class="nav-item"> <a class="nav-link" href="<?= $baseurl ?>admin/counter.php">Counter</a></li>
+          <li class="nav-item"> <a class="nav-link" href="<?= $baseurl ?>admin/counter_schedule.php">Schedule Counter</a></li>
 
         </ul>
       </div>
