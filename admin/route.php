@@ -23,8 +23,7 @@
                                                     <th>#</th>
                                                     <th>From Area</th>
                                                     <th>To Area</th>
-                                                    <th>Break Area</th>
-                                                    <th>Status</th>
+                                                    <th>Break Area</th>                                                  
                                                     <th>Action</th>
                                                 </tr>
                                             </thead>
@@ -36,10 +35,17 @@
                                                 ?>
                                                 <tr>
                                                     <td><?= ++$i ?></td>
+<<<<<<< HEAD
+                                                    <td><?= !$from_area['error'] ? $from_area['data'][0]->name : '' ?></td>
+                                                    <td><?= !$to_area['error'] ? $to_area['data'][0]->name : '' ?></td>
+                                                    <td><?= ($break_area && !$break_area['error']) ? $break_area['data'][0]->name : 'N/A' ?></td>
+                                                
+=======
                                                     <td><?= $d->from_a ?? '' ?></td>
                                                     <td><?= $d->to_a ?? '' ?></td>
                                                     <td><?= $d->break_a ?? 'N/A' ?></td>
                                                     <td><?= $d->status ? 'Active' : 'Inactive' ?></td>
+>>>>>>> 41d7fe648c8161fbcad77d8d2ce9831ac02094c8
                                                     <td>
                                                         <a href="<?= $baseurl?>admin/route_edit.php?id=<?= $d->id ?>" class="btn btn-info btn-xs" title="Edit">
                                                             <i class="fa fa-edit"></i>

@@ -21,7 +21,6 @@
               <div class="card">
                 <div class="card-body">
                   <h4 class="card-title">Add Bus Schedule</h4>
-                 
                   <form class="forms-sample" method="post" action="">
                     <div class="form-group">
                       <label for="route_id">Route Id</label>
@@ -112,5 +111,4 @@
           
           
           
-
 <?php include 'include/footer.php';?>

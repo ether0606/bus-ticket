@@ -192,10 +192,10 @@ CREATE TABLE `role_access` (
 
 CREATE TABLE `route` (
   `id` int(11) NOT NULL,
-  `to_area` int(11) DEFAULT NULL,
   `from_area` int(11) DEFAULT NULL,
+  `to_area` int(11) DEFAULT NULL,
   `break_area` int(11) DEFAULT NULL,
-   `status` int(11) NOT NULL DEFAULT 1,
+  `status` int(11) NOT NULL DEFAULT 1,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   `created_by` int(11) DEFAULT NULL,
