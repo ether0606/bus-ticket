@@ -24,8 +24,16 @@
                  
                   <form class="forms-sample" method="post" action="">
                     <div class="form-group">
-                      <label for="route_id">Route Id</label>
-                      <input type="text" class="form-control" id="route_id" name="route_id" placeholder="Route Id">
+                      <label for="route">Route Id</label>
+                      <select class="form-control" id="route" name="route">
+                        <?php
+                          $data=$mysqli->common_select('route');
+                          if(!$data['error']){
+                            foreach($data['data'] as $d){
+                        ?>
+                          <option value="<?= $d->id ?>"><?= $d->name ?></option>
+                        <?php } } ?>
+                      </select>
                     </div>
                     <div class="form-group">
                       <label for="bus_id">Bus Id</label>

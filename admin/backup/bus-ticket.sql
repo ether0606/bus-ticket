@@ -194,7 +194,12 @@ CREATE TABLE `route` (
   `id` int(11) NOT NULL,
   `to_area` int(11) DEFAULT NULL,
   `from_area` int(11) DEFAULT NULL,
-  `break_area` int(11) DEFAULT NULL
+  `break_area` int(11) DEFAULT NULL,
+   `status` int(11) NOT NULL DEFAULT 1,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `created_by` int(11) DEFAULT NULL,
+  `updated_by` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -210,7 +215,7 @@ CREATE TABLE `schedule` (
   `start_counter_id` int(11) DEFAULT NULL,
   `end_counter_id` int(11) DEFAULT NULL,
   `start_time_date` datetime DEFAULT NULL,
-  `has_complimantory` int(11) DEFAULT NULL
+  `has_complimantory` int(11) DEFAULT NULL,
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -237,7 +242,12 @@ CREATE TABLE `seat` (
   `seat_type` varchar(255) DEFAULT NULL,
   `seat_number` varchar(255) DEFAULT NULL,
   `seat_row` int(11) DEFAULT NULL,
-  `seat_column` int(11) DEFAULT NULL
+  `seat_column` int(11) DEFAULT NULL,
+   `status` int(11) NOT NULL DEFAULT 1,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `created_by` int(11) DEFAULT NULL,
+  `updated_by` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -250,7 +260,12 @@ CREATE TABLE `seatfare` (
   `id` int(11) DEFAULT NULL,
   `route_id` int(11) DEFAULT NULL,
   `seat_id` int(11) DEFAULT NULL,
-  `fare` decimal(10,0) DEFAULT NULL
+  `fare` decimal(10,0) DEFAULT NULL,
+   `status` int(11) NOT NULL DEFAULT 1,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `created_by` int(11) DEFAULT NULL,
+  `updated_by` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
