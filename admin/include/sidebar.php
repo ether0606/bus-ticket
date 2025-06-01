@@ -23,6 +23,10 @@
           <li class="nav-item"> <a class="nav-link" href="<?= $baseurl ?>admin/seat.php">Seat</a></li>
           <li class="nav-item"> <a class="nav-link" href="<?= $baseurl ?>admin/seatfare.php">Seatfare</a></li>
           <li class="nav-item"> <a class="nav-link" href="<?= $baseurl ?>admin/counter.php">Counter</a></li>
+          
+          <li class="nav-item"> <a class="nav-link" href="<?= $baseurl ?>admin/ticket.php">Ticket</a></li>
+          <li class="nav-item"> <a class="nav-link" href="<?= $baseurl ?>admin/ticket_details.php">Ticket Details</a></li>
+          <li class="nav-item"> <a class="nav-link" href="<?= $baseurl ?>admin/payment.php">Payment</a></li>
         </ul>
       </div>
     </li>
