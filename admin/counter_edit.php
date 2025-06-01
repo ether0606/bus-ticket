@@ -35,12 +35,12 @@
                       <input type="text" class="form-control" id="name" value="<?= $data->name ?>" name="name" placeholder="Name">
                     </div>
                     <div class="form-group">
-                      <label for="contact_no">Contact No</label>
-                      <input type="text" class="form-control" id="contact_no" value="<?= $data->contact_no ?>" name="contact_no" placeholder="Contact no">
+                      <label for="contact_no">address</label>
+                      <input type="text" class="form-control" id="address" value="<?= $data->address ?>" name="address" placeholder="address">
                     </div>
                     <div class="form-group">
-                      <label for="address">Address</label>
-                      <input type="text" class="form-control" id="address" value="<?= $data->address ?>" name="address" placeholder="address">
+                      <label for="contact_no">Contact No</label>
+                      <input type="text" class="form-control" id="contact_no" value="<?= $data->contact_no ?>" name="contact_no" placeholder="Contact_no">
                     </div>
                     
                     <button type="submit" class="btn btn-primary mr-2">Submit</button>
