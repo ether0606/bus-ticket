@@ -62,7 +62,7 @@
             $error_msg="";
 
             $sql="select $fields from $table";
-           
+
             if($where){
                 $sql.=" where ";
                 $i=0;

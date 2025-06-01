@@ -37,11 +37,11 @@
                                 <tbody>
                                     <?php
                                         $data=$mysqli->common_query('SELECT *, (SELECT name from area where area.id=route.to_area) as to_area,
-(SELECT name from area where area.id=route.from_area) as from_area,
-bus.registration_no,
-(SELECT counter.name from counter WHERE counter.id=schedule.start_counter_id) as start_counter,
-(SELECT counter.name from counter WHERE counter.id=schedule.end_counter_id) as end_counter
-FROM `schedule` JOIN route on route.id=schedule.route_id JOIN bus on bus.id=schedule.bus_id where schedule.status=1');
+            (SELECT name from area where area.id=route.from_area) as from_area,
+                bus.registration_no,
+                (SELECT counter.name from counter WHERE counter.id=schedule.start_counter_id) as start_counter,
+                (SELECT counter.name from counter WHERE counter.id=schedule.end_counter_id) as end_counter
+                FROM `schedule` JOIN route on route.id=schedule.route_id JOIN bus on bus.id=schedule.bus_id where schedule.status=1');
                                         if(!$data['error']){
                                             foreach($data['data'] as $i=>$d){
                                     ?>

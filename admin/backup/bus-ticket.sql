@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.0
+-- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 01, 2025 at 05:54 AM
--- Server version: 10.4.27-MariaDB
--- PHP Version: 8.2.0
+-- Generation Time: May 31, 2025 at 08:33 AM
+-- Server version: 10.4.32-MariaDB
+-- PHP Version: 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -137,10 +137,9 @@ INSERT INTO `buscompany` (`id`, `name`, `contact_no`, `address`, `status`, `crea
 --
 
 CREATE TABLE `counter` (
-  `id` int(11) NOT NULL,
+  `id` int(11) DEFAULT NULL,
   `name` varchar(255) DEFAULT NULL,
   `address` varchar(255) DEFAULT NULL,
-  `area_id` int(11) DEFAULT NULL,
   `contact_no` varchar(255) DEFAULT NULL,
   `status` int(11) NOT NULL DEFAULT 1 COMMENT '1 active 0 deleted',
   `created_at` timestamp NULL DEFAULT NULL,
@@ -149,13 +148,6 @@ CREATE TABLE `counter` (
   `updated_by` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Dumping data for table `counter`
---
-
-INSERT INTO `counter` (`id`, `name`, `address`, `area_id`, `contact_no`, `status`, `created_at`, `updated_at`, `created_by`, `updated_by`) VALUES
-(1, 'BRTC', 'Chittagong', NULL, '150', 1, '2025-05-31 03:03:06', NULL, 1, NULL);
-
 -- --------------------------------------------------------
 
 --
@@ -163,13 +155,8 @@ INSERT INTO `counter` (`id`, `name`, `address`, `area_id`, `contact_no`, `status
 --
 
 CREATE TABLE `payment_type` (
-  `id` int(11) NOT NULL,
-  `name` int(11) DEFAULT NULL,
-  `status` int(11) NOT NULL DEFAULT 1 COMMENT '1 active 0 deleted',
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL,
-  `created_by` int(11) DEFAULT NULL,
-  `updated_by` int(11) DEFAULT NULL
+  `id` int(11) DEFAULT NULL,
+  `name` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -217,22 +204,27 @@ CREATE TABLE `role_access` (
 
 CREATE TABLE `route` (
   `id` int(11) NOT NULL,
-  `from_area` int(11) DEFAULT NULL,
   `to_area` int(11) DEFAULT NULL,
-  `break_area` int(11) DEFAULT NULL,
   `status` int(11) NOT NULL DEFAULT 1 COMMENT '1 active 0 deleted',
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   `created_by` int(11) DEFAULT NULL,
-  `updated_by` int(11) DEFAULT NULL
+  `updated_by` int(11) DEFAULT NULL,
+  `from_area` int(11) DEFAULT NULL,
+  `break_area` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `route`
 --
 
-INSERT INTO `route` (`id`, `to_area`, `from_area`, `break_area`, `status`, `created_at`, `updated_at`, `created_by`, `updated_by`) VALUES
-(1, 2, 4, 1, 1, '2025-05-31 02:51:28', NULL, 1, NULL);
+INSERT INTO `route` (`id`, `to_area`, `status`, `created_at`, `updated_at`, `created_by`, `updated_by`, `from_area`, `break_area`) VALUES
+(0, 2, 0, '2025-05-31 00:12:58', '2025-05-31 00:29:41', 4, 4, 1, 3),
+(0, 2, 0, '2025-05-31 00:20:17', '2025-05-31 00:29:41', 4, 4, 3, 2),
+(0, 1, 0, '2025-05-31 00:21:17', '2025-05-31 00:29:41', 4, 4, 2, 3),
+(0, 4, 0, '2025-05-31 00:26:32', '2025-05-31 00:29:41', 4, 4, 2, 1),
+(0, 1, 0, '2025-05-31 00:27:27', '2025-05-31 00:29:41', 4, 4, 2, 3),
+(0, 2, 0, '2025-05-31 00:28:30', '2025-05-31 00:29:41', 4, 4, 1, 3);
 
 -- --------------------------------------------------------
 
@@ -241,26 +233,14 @@ INSERT INTO `route` (`id`, `to_area`, `from_area`, `break_area`, `status`, `crea
 --
 
 CREATE TABLE `schedule` (
-  `id` int(11) NOT NULL,
+  `id` int(11) DEFAULT NULL,
   `route_id` int(11) DEFAULT NULL,
   `bus_id` int(11) DEFAULT NULL,
   `start_counter_id` int(11) DEFAULT NULL,
   `end_counter_id` int(11) DEFAULT NULL,
   `start_time_date` datetime DEFAULT NULL,
-  `has_complimantory` int(11) DEFAULT NULL,
-  `status` int(11) NOT NULL DEFAULT 1 COMMENT '1 active 0 deleted',
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL,
-  `created_by` int(11) DEFAULT NULL,
-  `updated_by` int(11) DEFAULT NULL
+  `has_complimantory` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `schedule`
---
-
-INSERT INTO `schedule` (`id`, `route_id`, `bus_id`, `start_counter_id`, `end_counter_id`, `start_time_date`, `has_complimantory`, `status`, `created_at`, `updated_at`, `created_by`, `updated_by`) VALUES
-(1, 1, 2, 1, 1, '2025-05-31 17:08:00', 1, 1, '2025-05-31 03:08:16', NULL, 1, NULL);
 
 -- --------------------------------------------------------
 
@@ -269,14 +249,9 @@ INSERT INTO `schedule` (`id`, `route_id`, `bus_id`, `start_counter_id`, `end_cou
 --
 
 CREATE TABLE `schedule_counter` (
-  `id` int(11) NOT NULL,
+  `id` int(11) DEFAULT NULL,
   `schedule_id` int(11) DEFAULT NULL,
-  `counter_id` int(11) DEFAULT NULL,
-  `status` int(11) NOT NULL DEFAULT 1 COMMENT '1 active 0 deleted',
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL,
-  `created_by` int(11) DEFAULT NULL,
-  `updated_by` int(11) DEFAULT NULL
+  `counter_id` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -286,7 +261,7 @@ CREATE TABLE `schedule_counter` (
 --
 
 CREATE TABLE `seat` (
-  `id` int(11) NOT NULL,
+  `id` int(11) DEFAULT NULL,
   `bus_id` int(11) DEFAULT NULL,
   `seat_number` varchar(255) DEFAULT NULL,
   `seat_type` varchar(255) DEFAULT NULL,
@@ -304,7 +279,7 @@ CREATE TABLE `seat` (
 --
 
 INSERT INTO `seat` (`id`, `bus_id`, `seat_type`, `seat_number`, `seat_row`, `seat_column`, `status`, `created_at`, `updated_at`, `created_by`, `updated_by`) VALUES
-(1, 2, 'Standard', 'A1', 1, 1, 1, '2025-05-31 01:09:34', NULL, 4, NULL);
+(NULL, 2, 'Standard', 'A1', 1, 1, 1, '2025-05-31 01:09:34', NULL, 4, NULL);
 
 -- --------------------------------------------------------
 
@@ -313,7 +288,7 @@ INSERT INTO `seat` (`id`, `bus_id`, `seat_type`, `seat_number`, `seat_row`, `sea
 --
 
 CREATE TABLE `seatfare` (
-  `id` int(11) NOT NULL,
+  `id` int(11) DEFAULT NULL,
   `route_id` int(11) DEFAULT NULL,
   `seat_id` int(11) DEFAULT NULL,
   `status` int(11) NOT NULL DEFAULT 1 COMMENT '1 active 0 deleted',
@@ -331,7 +306,7 @@ CREATE TABLE `seatfare` (
 --
 
 CREATE TABLE `ticket` (
-  `id` int(11) NOT NULL,
+  `id` int(11) DEFAULT NULL,
   `user_id` int(11) DEFAULT NULL,
   `schedule_id` int(11) DEFAULT NULL,
   `ticket_qty` int(11) DEFAULT NULL,
@@ -346,7 +321,8 @@ CREATE TABLE `ticket` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   `created_by` int(11) DEFAULT NULL,
-  `updated_by` int(11) DEFAULT NULL
+  `updated_by` int(11) DEFAULT NULL,
+  `fare` decimal(10,0) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -360,6 +336,12 @@ CREATE TABLE `ticket_details` (
   `ticket_id` int(11) DEFAULT NULL,
   `seat_id` int(11) DEFAULT NULL,
   `price` decimal(10,0) DEFAULT NULL,
+  `status` int(11) NOT NULL DEFAULT 1 COMMENT '1 active 0 deleted',
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `created_by` int(11) DEFAULT NULL,
+  `updated_by` int(11) DEFAULT NULL,
+  `fare` decimal(10,0) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -413,18 +395,6 @@ ALTER TABLE `buscompany`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `counter`
---
-ALTER TABLE `counter`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `payment_type`
---
-ALTER TABLE `payment_type`
-  ADD PRIMARY KEY (`id`);
-
---
 -- Indexes for table `role`
 --
 ALTER TABLE `role`
@@ -434,48 +404,6 @@ ALTER TABLE `role`
 -- Indexes for table `role_access`
 --
 ALTER TABLE `role_access`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `route`
---
-ALTER TABLE `route`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `schedule`
---
-ALTER TABLE `schedule`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `schedule_counter`
---
-ALTER TABLE `schedule_counter`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `seat`
---
-ALTER TABLE `seat`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `seatfare`
---
-ALTER TABLE `seatfare`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `ticket`
---
-ALTER TABLE `ticket`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `ticke_details`
---
-ALTER TABLE `ticke_details`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -513,18 +441,6 @@ ALTER TABLE `buscompany`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
--- AUTO_INCREMENT for table `counter`
---
-ALTER TABLE `counter`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
---
--- AUTO_INCREMENT for table `payment_type`
---
-ALTER TABLE `payment_type`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
 -- AUTO_INCREMENT for table `role`
 --
 ALTER TABLE `role`
@@ -534,48 +450,6 @@ ALTER TABLE `role`
 -- AUTO_INCREMENT for table `role_access`
 --
 ALTER TABLE `role_access`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `route`
---
-ALTER TABLE `route`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
---
--- AUTO_INCREMENT for table `schedule`
---
-ALTER TABLE `schedule`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
---
--- AUTO_INCREMENT for table `schedule_counter`
---
-ALTER TABLE `schedule_counter`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `seat`
---
-ALTER TABLE `seat`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
---
--- AUTO_INCREMENT for table `seatfare`
---
-ALTER TABLE `seatfare`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `ticket`
---
-ALTER TABLE `ticket`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `ticke_details`
---
-ALTER TABLE `ticke_details`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --

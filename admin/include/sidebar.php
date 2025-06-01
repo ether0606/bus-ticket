@@ -1,9 +1,9 @@
 <nav class="sidebar sidebar-offcanvas" id="sidebar">
   <ul class="nav">
     <li class="nav-item">
-      <a class="nav-link" data-toggle="collapse" href="<?= $baseurl; ?>admin" aria-expanded="false" aria-controls="ui-basic">
-        <i class="icon-grid menu-icon"></i>
-        <span class="menu-title">Dashboard</span>
+      <a class="nav-link" data-toggle="collapse"  aria-expanded="false" aria-controls="ui-basic">
+        <i class="icon-grid menu-icon" ></i>
+        <span class="menu-title" >Dashboard</span>
       </a>
     </li>
     
@@ -23,6 +23,7 @@
           <li class="nav-item"> <a class="nav-link" href="<?= $baseurl ?>admin/seat.php">Seat</a></li>
           <li class="nav-item"> <a class="nav-link" href="<?= $baseurl ?>admin/seatfare.php">Seatfare</a></li>
           <li class="nav-item"> <a class="nav-link" href="<?= $baseurl ?>admin/counter.php">Counter</a></li>
+          
           <li class="nav-item"> <a class="nav-link" href="<?= $baseurl ?>admin/ticket.php">Ticket</a></li>
           <li class="nav-item"> <a class="nav-link" href="<?= $baseurl ?>admin/ticket_details.php">Ticket Details</a></li>
           <li class="nav-item"> <a class="nav-link" href="<?= $baseurl ?>admin/payment.php">Payment</a></li>
