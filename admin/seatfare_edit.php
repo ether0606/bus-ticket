@@ -50,7 +50,7 @@
                                                     $seats = $mysqli->common_select('seat');
                                                     if(!$seats['error']) {
                                                         foreach($seats['data'] as $s) {
-                                                            $bus = $mysqli->common_select('bus', '*', ['id' => $s->bud_id]);
+                                                            $bus = $mysqli->common_select('bus', '*', ['id' => $s->bus_id]);
                                                             $bus_no = !$bus['error'] ? $bus['data'][0]->registration_no : 'N/A';
                                                             $selected = $seatfare->seat_id == $s->id ? 'selected' : '';
                                                             echo "<option value='{$s->id}' $selected>{$s->seat_number} ({$s->seat_type}) - Bus: {$bus_no}</option>";
