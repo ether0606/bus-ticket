@@ -35,10 +35,6 @@
                                                 ?>
                                                 <tr>
                                                     <td><?= ++$i ?></td>
-                                                    <td><?= !$from_area['error'] ? $from_area['data'][0]->name : '' ?></td>
-                                                    <td><?= !$to_area['error'] ? $to_area['data'][0]->name : '' ?></td>
-                                                    <td><?= ($break_area && !$break_area['error']) ? $break_area['data'][0]->name : 'N/A' ?></td>
-                                                
                                                     <td><?= $d->from_a ?? '' ?></td>
                                                     <td><?= $d->to_a ?? '' ?></td>
                                                     <td><?= $d->break_a ?? 'N/A' ?></td>
