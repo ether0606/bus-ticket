@@ -17,8 +17,8 @@
                                     <h4 class="card-title">Add New Seat</h4>
                                     <form class="forms-sample" method="post" action="">
                                         <div class="form-group">
-                                            <label for="bud_id">Bus</label>
-                                            <select class="form-control" id="bud_id" name="bud_id" required>
+                                            <label for="bus_id">Bus</label>
+                                            <select class="form-control" id="bus_id" name="bus_id" required>
                                                 <option value="">Select Bus</option>
                                                 <?php
                                                     $buses = $mysqli->common_select('bus');
@@ -37,9 +37,9 @@
                                         <div class="form-group">
                                             <label for="seat_type">Seat Type</label>
                                             <select class="form-control" id="seat_type" name="seat_type" required>
-                                                <option value="Standard">Standard</option>
-                                                <option value="Premium">Premium</option>
-                                                <option value="VIP">VIP</option>
+                                                <option value="Standard">Non-AC</option>
+                                                <option value="Premium">AC</option>
+                                                <option value="VIP">Sleeper</option>
                                             </select>
                                         </div>
                                         <div class="form-group">

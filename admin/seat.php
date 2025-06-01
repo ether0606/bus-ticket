@@ -25,7 +25,6 @@
                                                     <th>Seat Number</th>
                                                     <th>Seat Type</th>
                                                     <th>Row/Column</th>
-                                                    <th>Status</th>
                                                     <th>Action</th>
                                                 </tr>
                                             </thead>
@@ -34,7 +33,7 @@
                                                     $data = $mysqli->common_select('seat');
                                                     if(!$data['error']) {
                                                         foreach($data['data'] as $i => $d) {
-                                                            $bus = $mysqli->common_select('bus', '*', ['id' => $d->bud_id]);
+                                                            $bus = $mysqli->common_select('bus', '*', ['id' => $d->bus_id]);
                                                 ?>
                                                 <tr>
                                                     <td><?= ++$i ?></td>
@@ -42,7 +41,6 @@
                                                     <td><?= $d->seat_number ?></td>
                                                     <td><?= $d->seat_type ?></td>
                                                     <td>Row <?= $d->seat_row ?>, Col <?= $d->seat_column ?></td>
-                                                    <td><?= $d->status ? 'Active' : 'Inactive' ?></td>
                                                     <td>
                                                         <a href="<?= $baseurl?>admin/seat_edit.php?id=<?= $d->id ?>" class="btn btn-info btn-xs" title="Edit">
                                                             <i class="fa fa-edit"></i>

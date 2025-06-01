@@ -238,7 +238,7 @@ CREATE TABLE `schedule_counter` (
 
 CREATE TABLE `seat` (
   `id` int(11) DEFAULT NULL,
-  `bud_id` int(11) DEFAULT NULL,
+  `bus_id` int(11) DEFAULT NULL,
   `seat_type` varchar(255) DEFAULT NULL,
   `seat_number` varchar(255) DEFAULT NULL,
   `seat_row` int(11) DEFAULT NULL,
@@ -298,7 +298,7 @@ CREATE TABLE `ticke_details` (
   `id` int(11) DEFAULT NULL,
   `ticket_id` int(11) DEFAULT NULL,
   `seat_id` int(11) DEFAULT NULL,
-  `price` decimal(10,0) DEFAULT NULL
+  `price` decimal(10,0) DEFAULT NULL,
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
