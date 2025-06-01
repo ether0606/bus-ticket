@@ -288,8 +288,8 @@ CREATE TABLE `schedule_counter` (
 CREATE TABLE `seat` (
   `id` int(11) NOT NULL,
   `bus_id` int(11) DEFAULT NULL,
-  `seat_type` varchar(255) DEFAULT NULL,
   `seat_number` varchar(255) DEFAULT NULL,
+  `seat_type` varchar(255) DEFAULT NULL,
   `seat_row` int(11) DEFAULT NULL,
   `seat_column` int(11) DEFAULT NULL,
   `status` int(11) NOT NULL DEFAULT 1 COMMENT '\r\n1 active 0 deleted',
@@ -355,7 +355,7 @@ CREATE TABLE `ticket` (
 -- Table structure for table `ticke_details`
 --
 
-CREATE TABLE `ticke_details` (
+CREATE TABLE `ticket_details` (
   `id` int(11) NOT NULL,
   `ticket_id` int(11) DEFAULT NULL,
   `seat_id` int(11) DEFAULT NULL,
