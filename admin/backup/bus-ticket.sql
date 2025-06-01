@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 29, 2025 at 05:32 AM
+-- Generation Time: Jun 01, 2025 at 05:54 AM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.2.0
 
@@ -47,7 +47,9 @@ CREATE TABLE `admins` (
 --
 
 INSERT INTO `admins` (`id`, `name`, `contact_no`, `email`, `password`, `is_active`, `role_id`, `status`, `created_at`, `updated_at`, `created_by`, `updated_by`) VALUES
-(1, 'Ibrahim khalil', '0156669998', 'kamal@yahoo.com', '356a192b7913b04c54574d18c28d46e6395428ab', 1, 2, 1, NULL, NULL, NULL, NULL);
+(1, 'Ibrahim khalil', '0156669998', 'kamal@yahoo.com', '356a192b7913b04c54574d18c28d46e6395428ab', 1, 2, 1, NULL, NULL, NULL, NULL),
+(3, 'Amran', '01837131953', 'amranhossen9182@gmail.com', '40bd001563085fc35165329ea1ff5c5ecbdbbeef', 1, 2, 1, NULL, NULL, NULL, NULL),
+(4, 'Amran', '01837131953', 'amranhossen9685@gmail.com', '40bd001563085fc35165329ea1ff5c5ecbdbbeef', 1, 2, 1, NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -64,6 +66,16 @@ CREATE TABLE `area` (
   `created_by` int(11) DEFAULT NULL,
   `updated_by` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `area`
+--
+
+INSERT INTO `area` (`id`, `name`, `status`, `created_at`, `updated_at`, `created_by`, `updated_by`) VALUES
+(1, 'Chittagong', 1, '2025-05-31 00:10:40', '2025-05-31 00:25:28', 4, 4),
+(2, 'Dhaka', 1, '2025-05-31 00:11:42', NULL, 4, NULL),
+(3, 'Cumilla', 1, '2025-05-31 00:12:40', NULL, 4, NULL),
+(4, 'Coxsbazar', 1, '2025-05-31 00:25:15', NULL, 4, NULL);
 
 -- --------------------------------------------------------
 
@@ -116,7 +128,7 @@ CREATE TABLE `buscompany` (
 
 INSERT INTO `buscompany` (`id`, `name`, `contact_no`, `address`, `status`, `created_at`, `updated_at`, `created_by`, `updated_by`) VALUES
 (1, 'Hanif', '015', 'Ctg', 1, '2025-05-28 01:13:54', '2025-05-28 01:33:23', 0, 0),
-(2, 'Unique Bus S', '016', 'ctg', 1, '2025-05-28 01:15:01', '2025-05-28 01:33:48', 0, 0);
+(2, 'Unique Bus S', '016', 'ctg', 0, '2025-05-28 01:15:01', '2025-05-31 00:27:35', 0, 4);
 
 -- --------------------------------------------------------
 
@@ -125,9 +137,10 @@ INSERT INTO `buscompany` (`id`, `name`, `contact_no`, `address`, `status`, `crea
 --
 
 CREATE TABLE `counter` (
-  `id` int(11) DEFAULT NULL,
+  `id` int(11) NOT NULL,
   `name` varchar(255) DEFAULT NULL,
   `address` varchar(255) DEFAULT NULL,
+  `area_id` int(11) DEFAULT NULL,
   `contact_no` varchar(255) DEFAULT NULL,
   `status` int(11) NOT NULL DEFAULT 1 COMMENT '1 active 0 deleted',
   `created_at` timestamp NULL DEFAULT NULL,
@@ -136,6 +149,13 @@ CREATE TABLE `counter` (
   `updated_by` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data for table `counter`
+--
+
+INSERT INTO `counter` (`id`, `name`, `address`, `area_id`, `contact_no`, `status`, `created_at`, `updated_at`, `created_by`, `updated_by`) VALUES
+(1, 'BRTC', 'Chittagong', NULL, '150', 1, '2025-05-31 03:03:06', NULL, 1, NULL);
+
 -- --------------------------------------------------------
 
 --
@@ -143,8 +163,13 @@ CREATE TABLE `counter` (
 --
 
 CREATE TABLE `payment_type` (
-  `id` int(11) DEFAULT NULL,
-  `name` int(11) DEFAULT NULL
+  `id` int(11) NOT NULL,
+  `name` int(11) DEFAULT NULL,
+  `status` int(11) NOT NULL DEFAULT 1 COMMENT '1 active 0 deleted',
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `created_by` int(11) DEFAULT NULL,
+  `updated_by` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -192,15 +217,22 @@ CREATE TABLE `role_access` (
 
 CREATE TABLE `route` (
   `id` int(11) NOT NULL,
-  `to_area` int(11) DEFAULT NULL,
   `from_area` int(11) DEFAULT NULL,
+  `to_area` int(11) DEFAULT NULL,
   `break_area` int(11) DEFAULT NULL,
-   `status` int(11) NOT NULL DEFAULT 1,
+  `status` int(11) NOT NULL DEFAULT 1 COMMENT '1 active 0 deleted',
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   `created_by` int(11) DEFAULT NULL,
   `updated_by` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `route`
+--
+
+INSERT INTO `route` (`id`, `to_area`, `from_area`, `break_area`, `status`, `created_at`, `updated_at`, `created_by`, `updated_by`) VALUES
+(1, 2, 4, 1, 1, '2025-05-31 02:51:28', NULL, 1, NULL);
 
 -- --------------------------------------------------------
 
@@ -209,14 +241,26 @@ CREATE TABLE `route` (
 --
 
 CREATE TABLE `schedule` (
-  `id` int(11) DEFAULT NULL,
+  `id` int(11) NOT NULL,
   `route_id` int(11) DEFAULT NULL,
   `bus_id` int(11) DEFAULT NULL,
   `start_counter_id` int(11) DEFAULT NULL,
   `end_counter_id` int(11) DEFAULT NULL,
   `start_time_date` datetime DEFAULT NULL,
   `has_complimantory` int(11) DEFAULT NULL,
+  `status` int(11) NOT NULL DEFAULT 1 COMMENT '1 active 0 deleted',
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `created_by` int(11) DEFAULT NULL,
+  `updated_by` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `schedule`
+--
+
+INSERT INTO `schedule` (`id`, `route_id`, `bus_id`, `start_counter_id`, `end_counter_id`, `start_time_date`, `has_complimantory`, `status`, `created_at`, `updated_at`, `created_by`, `updated_by`) VALUES
+(1, 1, 2, 1, 1, '2025-05-31 17:08:00', 1, 1, '2025-05-31 03:08:16', NULL, 1, NULL);
 
 -- --------------------------------------------------------
 
@@ -225,9 +269,14 @@ CREATE TABLE `schedule` (
 --
 
 CREATE TABLE `schedule_counter` (
-  `id` int(11) DEFAULT NULL,
+  `id` int(11) NOT NULL,
   `schedule_id` int(11) DEFAULT NULL,
-  `counter_id` int(11) DEFAULT NULL
+  `counter_id` int(11) DEFAULT NULL,
+  `status` int(11) NOT NULL DEFAULT 1 COMMENT '1 active 0 deleted',
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `created_by` int(11) DEFAULT NULL,
+  `updated_by` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -237,18 +286,25 @@ CREATE TABLE `schedule_counter` (
 --
 
 CREATE TABLE `seat` (
-  `id` int(11) DEFAULT NULL,
+  `id` int(11) NOT NULL,
   `bus_id` int(11) DEFAULT NULL,
   `seat_type` varchar(255) DEFAULT NULL,
   `seat_number` varchar(255) DEFAULT NULL,
   `seat_row` int(11) DEFAULT NULL,
   `seat_column` int(11) DEFAULT NULL,
-   `status` int(11) NOT NULL DEFAULT 1,
+  `status` int(11) NOT NULL DEFAULT 1 COMMENT '\r\n1 active 0 deleted',
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   `created_by` int(11) DEFAULT NULL,
   `updated_by` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `seat`
+--
+
+INSERT INTO `seat` (`id`, `bus_id`, `seat_type`, `seat_number`, `seat_row`, `seat_column`, `status`, `created_at`, `updated_at`, `created_by`, `updated_by`) VALUES
+(1, 2, 'Standard', 'A1', 1, 1, 1, '2025-05-31 01:09:34', NULL, 4, NULL);
 
 -- --------------------------------------------------------
 
@@ -257,15 +313,15 @@ CREATE TABLE `seat` (
 --
 
 CREATE TABLE `seatfare` (
-  `id` int(11) DEFAULT NULL,
+  `id` int(11) NOT NULL,
   `route_id` int(11) DEFAULT NULL,
   `seat_id` int(11) DEFAULT NULL,
-  `fare` decimal(10,0) DEFAULT NULL,
-   `status` int(11) NOT NULL DEFAULT 1,
+  `status` int(11) NOT NULL DEFAULT 1 COMMENT '1 active 0 deleted',
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   `created_by` int(11) DEFAULT NULL,
-  `updated_by` int(11) DEFAULT NULL
+  `updated_by` int(11) DEFAULT NULL,
+  `fare` decimal(10,0) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -275,7 +331,7 @@ CREATE TABLE `seatfare` (
 --
 
 CREATE TABLE `ticket` (
-  `id` int(11) DEFAULT NULL,
+  `id` int(11) NOT NULL,
   `user_id` int(11) DEFAULT NULL,
   `schedule_id` int(11) DEFAULT NULL,
   `ticket_qty` int(11) DEFAULT NULL,
@@ -285,7 +341,12 @@ CREATE TABLE `ticket` (
   `grand_total` decimal(10,0) DEFAULT NULL,
   `ticket_status` int(11) DEFAULT NULL,
   `payment_type` int(11) DEFAULT NULL,
-  `payment_status` int(11) DEFAULT NULL
+  `payment_status` int(11) DEFAULT NULL,
+  `status` int(11) NOT NULL DEFAULT 1 COMMENT '1 active 0 deleted',
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `created_by` int(11) DEFAULT NULL,
+  `updated_by` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -295,7 +356,7 @@ CREATE TABLE `ticket` (
 --
 
 CREATE TABLE `ticke_details` (
-  `id` int(11) DEFAULT NULL,
+  `id` int(11) NOT NULL,
   `ticket_id` int(11) DEFAULT NULL,
   `seat_id` int(11) DEFAULT NULL,
   `price` decimal(10,0) DEFAULT NULL,
@@ -352,6 +413,18 @@ ALTER TABLE `buscompany`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `counter`
+--
+ALTER TABLE `counter`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `payment_type`
+--
+ALTER TABLE `payment_type`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `role`
 --
 ALTER TABLE `role`
@@ -361,6 +434,48 @@ ALTER TABLE `role`
 -- Indexes for table `role_access`
 --
 ALTER TABLE `role_access`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `route`
+--
+ALTER TABLE `route`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `schedule`
+--
+ALTER TABLE `schedule`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `schedule_counter`
+--
+ALTER TABLE `schedule_counter`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `seat`
+--
+ALTER TABLE `seat`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `seatfare`
+--
+ALTER TABLE `seatfare`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `ticket`
+--
+ALTER TABLE `ticket`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `ticke_details`
+--
+ALTER TABLE `ticke_details`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -377,13 +492,13 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `admins`
 --
 ALTER TABLE `admins`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `area`
 --
 ALTER TABLE `area`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `bus`
@@ -398,6 +513,18 @@ ALTER TABLE `buscompany`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
+-- AUTO_INCREMENT for table `counter`
+--
+ALTER TABLE `counter`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `payment_type`
+--
+ALTER TABLE `payment_type`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT for table `role`
 --
 ALTER TABLE `role`
@@ -407,6 +534,48 @@ ALTER TABLE `role`
 -- AUTO_INCREMENT for table `role_access`
 --
 ALTER TABLE `role_access`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `route`
+--
+ALTER TABLE `route`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `schedule`
+--
+ALTER TABLE `schedule`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `schedule_counter`
+--
+ALTER TABLE `schedule_counter`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `seat`
+--
+ALTER TABLE `seat`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `seatfare`
+--
+ALTER TABLE `seatfare`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `ticket`
+--
+ALTER TABLE `ticket`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `ticke_details`
+--
+ALTER TABLE `ticke_details`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --

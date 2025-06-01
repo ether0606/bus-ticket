@@ -32,23 +32,23 @@
                                         </div>
                                         <div class="form-group">
                                             <label for="seat_number">Seat Number</label>
-                                            <input type="text" class="form-control" id="seat_number" name="seat_number" placeholder="e.g. A1, B2" required>
+                                            <input type="text" class="form-control" id="seat_number" name="seat_number" placeholder="A1, B2" required>
                                         </div>
                                         <div class="form-group">
                                             <label for="seat_type">Seat Type</label>
                                             <select class="form-control" id="seat_type" name="seat_type" required>
-                                                <option value="Standard">Non-AC</option>
-                                                <option value="Premium">AC</option>
-                                                <option value="VIP">Sleeper</option>
+                                                <option value="Non-AC">Non-AC</option>
+                                                <option value="AC">AC</option>
+                                                <option value="Slepeer">Slepeer</option>
                                             </select>
                                         </div>
                                         <div class="form-group">
                                             <label for="seat_row">Row Number</label>
-                                            <input type="number" class="form-control" id="seat_row" name="seat_row" placeholder="e.g. 1" required>
+                                            <input type="number" class="form-control" id="seat_row" name="seat_row" placeholder="1" required>
                                         </div>
                                         <div class="form-group">
                                             <label for="seat_column">Column Number</label>
-                                            <input type="number" class="form-control" id="seat_column" name="seat_column" placeholder="e.g. 1" required>
+                                            <input type="number" class="form-control" id="seat_column" name="seat_column" placeholder="1" required>
                                         </div>
                                         <button type="submit" class="btn btn-primary mr-2">Submit</button>
                                     </form>

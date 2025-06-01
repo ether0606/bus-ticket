@@ -45,9 +45,9 @@
                                         <div class="form-group">
                                             <label for="seat_type">Seat Type</label>
                                             <select class="form-control" id="seat_type" name="seat_type" required>
-                                                <option value="Standard" <?= $seat->seat_type == 'Standard' ? 'selected' : '' ?>>Standard</option>
-                                                <option value="Premium" <?= $seat->seat_type == 'Premium' ? 'selected' : '' ?>>Premium</option>
-                                                <option value="VIP" <?= $seat->seat_type == 'VIP' ? 'selected' : '' ?>>VIP</option>
+                                                <option value="Non-AC" <?= $seat->seat_type == 'Non-AC' ? 'selected' : '' ?>>Non-AC</option>
+                                                <option value="AC" <?= $seat->seat_type == 'AC' ? 'selected' : '' ?>>AC</option>
+                                                <option value="Sleeper" <?= $seat->seat_type == 'Sleeper' ? 'selected' : '' ?>>Sleeper</option>
                                             </select>
                                         </div>
                                         <div class="form-group">
