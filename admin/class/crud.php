@@ -38,7 +38,7 @@
                 $sql.=" limit $offset $limit";
             }
 
-            $result=$this->connect->query($sql);
+            $result=$this->connect->cquery($sql);
             if($result){
                 if($result->num_rows > 0){
                     while($r=$result->fetch_object()){
