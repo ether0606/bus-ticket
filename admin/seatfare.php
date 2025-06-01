@@ -24,7 +24,6 @@
                                                     <th>Route</th>
                                                     <th>Seat</th>
                                                     <th>Fare</th>
-                                                    <th>Status</th>
                                                     <th>Action</th>
                                                 </tr>
                                             </thead>
@@ -52,7 +51,6 @@
                                                         <?= !$seat['error'] ? $seat['data'][0]->seat_number.' ('.$seat['data'][0]->seat_type.')' : 'N/A' ?>
                                                     </td>
                                                     <td><?= $d->fare ?> TK</td>
-                                                    <td><?= $d->status ? 'Active' : 'Inactive' ?></td>
                                                     <td>
                                                         <a href="<?= $baseurl?>admin/seatfare_edit.php?id=<?= $d->id ?>" class="btn btn-info btn-xs" title="Edit">
                                                             <i class="fa fa-edit"></i>

@@ -238,7 +238,7 @@ CREATE TABLE `schedule_counter` (
 
 CREATE TABLE `seat` (
   `id` int(11) DEFAULT NULL,
-  `bud_id` int(11) DEFAULT NULL,
+  `bus_id` int(11) DEFAULT NULL,
   `seat_type` varchar(255) DEFAULT NULL,
   `seat_number` varchar(255) DEFAULT NULL,
   `seat_row` int(11) DEFAULT NULL,

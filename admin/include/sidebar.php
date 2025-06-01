@@ -18,21 +18,14 @@
           <li class="nav-item"> <a class="nav-link" href="<?= $baseurl ?>admin/bus_company.php">Bus Company</a></li>
           <li class="nav-item"> <a class="nav-link" href="<?= $baseurl ?>admin/bus.php">Bus</a></li>
           <li class="nav-item"> <a class="nav-link" href="<?= $baseurl ?>admin/schedule.php">Schedule</a></li>
-<<<<<<< HEAD
           <li class="nav-item"> <a class="nav-link" href="<?= $baseurl ?>admin/counter_schedule.php"> Counter Schedule</a></li>
           <li class="nav-item"> <a class="nav-link" href="<?= $baseurl ?>admin/counter.php">Bus Counter</a></li>
-=======
->>>>>>> 41d7fe648c8161fbcad77d8d2ce9831ac02094c8
           <li class="nav-item"> <a class="nav-link" href="<?= $baseurl ?>admin/route.php">Route</a></li>
           <li class="nav-item"> <a class="nav-link" href="<?= $baseurl ?>admin/area.php">Area</a></li>
           <li class="nav-item"> <a class="nav-link" href="<?= $baseurl ?>admin/seat.php">Seat</a></li>
           <li class="nav-item"> <a class="nav-link" href="<?= $baseurl ?>admin/seatfare.php">Seatfare</a></li>
-<<<<<<< HEAD
-
-=======
           <li class="nav-item"> <a class="nav-link" href="<?= $baseurl ?>admin/counter.php">Counter</a></li>
           <li class="nav-item"> <a class="nav-link" href="<?= $baseurl ?>admin/counter_schedule.php">Schedule Counter</a></li>
->>>>>>> 41d7fe648c8161fbcad77d8d2ce9831ac02094c8
         </ul>
       </div>
     </li>
