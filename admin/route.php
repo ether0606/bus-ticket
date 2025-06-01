@@ -38,7 +38,6 @@
                                                     <td><?= $d->from_a ?? '' ?></td>
                                                     <td><?= $d->to_a ?? '' ?></td>
                                                     <td><?= $d->break_a ?? 'N/A' ?></td>
-                                                    <td><?= $d->status ? 'Active' : 'Inactive' ?></td>
                                                     <td>
                                                         <a href="<?= $baseurl?>admin/route_edit.php?id=<?= $d->id ?>" class="btn btn-info btn-xs" title="Edit">
                                                             <i class="fa fa-edit"></i>
