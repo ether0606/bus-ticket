@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 01, 2025 at 05:54 AM
+-- Generation Time: Jun 01, 2025 at 08:08 AM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.2.0
 
@@ -217,8 +217,8 @@ CREATE TABLE `role_access` (
 
 CREATE TABLE `route` (
   `id` int(11) NOT NULL,
-  `from_area` int(11) DEFAULT NULL,
   `to_area` int(11) DEFAULT NULL,
+  `from_area` int(11) DEFAULT NULL,
   `break_area` int(11) DEFAULT NULL,
   `status` int(11) NOT NULL DEFAULT 1 COMMENT '1 active 0 deleted',
   `created_at` timestamp NULL DEFAULT NULL,
@@ -265,31 +265,14 @@ INSERT INTO `schedule` (`id`, `route_id`, `bus_id`, `start_counter_id`, `end_cou
 -- --------------------------------------------------------
 
 --
--- Table structure for table `schedule_counter`
---
-
-CREATE TABLE `schedule_counter` (
-  `id` int(11) NOT NULL,
-  `schedule_id` int(11) DEFAULT NULL,
-  `counter_id` int(11) DEFAULT NULL,
-  `status` int(11) NOT NULL DEFAULT 1 COMMENT '1 active 0 deleted',
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL,
-  `created_by` int(11) DEFAULT NULL,
-  `updated_by` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `seat`
 --
 
 CREATE TABLE `seat` (
   `id` int(11) NOT NULL,
   `bus_id` int(11) DEFAULT NULL,
-  `seat_number` varchar(255) DEFAULT NULL,
   `seat_type` varchar(255) DEFAULT NULL,
+  `seat_number` varchar(255) DEFAULT NULL,
   `seat_row` int(11) DEFAULT NULL,
   `seat_column` int(11) DEFAULT NULL,
   `status` int(11) NOT NULL DEFAULT 1 COMMENT '\r\n1 active 0 deleted',
@@ -355,11 +338,11 @@ CREATE TABLE `ticket` (
 -- Table structure for table `ticke_details`
 --
 
-CREATE TABLE `ticket_details` (
+CREATE TABLE `ticke_details` (
   `id` int(11) NOT NULL,
   `ticket_id` int(11) DEFAULT NULL,
   `seat_id` int(11) DEFAULT NULL,
-  `price` decimal(10,0) DEFAULT NULL,
+  `price` decimal(10,0) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -446,12 +429,6 @@ ALTER TABLE `route`
 -- Indexes for table `schedule`
 --
 ALTER TABLE `schedule`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `schedule_counter`
---
-ALTER TABLE `schedule_counter`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -547,12 +524,6 @@ ALTER TABLE `route`
 --
 ALTER TABLE `schedule`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
---
--- AUTO_INCREMENT for table `schedule_counter`
---
-ALTER TABLE `schedule_counter`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `seat`
