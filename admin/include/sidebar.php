@@ -1,9 +1,9 @@
 <nav class="sidebar sidebar-offcanvas" id="sidebar">
   <ul class="nav">
     <li class="nav-item">
-      <a class="nav-link" data-toggle="collapse" href="<?= $baseurl; ?>admin" aria-expanded="false" aria-controls="ui-basic">
-        <i class="icon-grid menu-icon"></i>
-        <span class="menu-title">Dashboard</span>
+      <a class="nav-link" data-toggle="collapse"  aria-expanded="false" aria-controls="ui-basic">
+        <i class="icon-grid menu-icon" ></i>
+        <span class="menu-title" >Dashboard</span>
       </a>
     </li>
     
