@@ -22,7 +22,6 @@
                                                 <tr>
                                                     <th>#</th>
                                                     <th>Name</th>
-                                                    <th>Status</th>
                                                     <th>Action</th>
                                                 </tr>
                                             </thead>
@@ -35,7 +34,6 @@
                                                 <tr>
                                                     <td><?= ++$i ?></td>
                                                     <td><?= $d->name ?></td>
-                                                    <td><?= $d->status ? 'Active' : 'Inactive' ?></td>
                                                     <td>
                                                         <a href="<?= $baseurl?>admin/area_edit.php?id=<?= $d->id ?>" class="btn btn-info btn-xs" title="Edit">
                                                             <i class="fa fa-edit"></i>

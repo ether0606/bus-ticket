@@ -23,8 +23,7 @@
                                                     <th>#</th>
                                                     <th>From Area</th>
                                                     <th>To Area</th>
-                                                    <th>Break Area</th>
-                                                    <th>Status</th>
+                                                    <th>Break Area</th>                                                  
                                                     <th>Action</th>
                                                 </tr>
                                             </thead>
