@@ -26,6 +26,11 @@
           <li class="nav-item"> <a class="nav-link" href="<?= $baseurl ?>admin/ticket.php">Ticket</a></li>
           <li class="nav-item"> <a class="nav-link" href="<?= $baseurl ?>admin/ticket_details.php">Ticket Details</a></li>
           <li class="nav-item"> <a class="nav-link" href="<?= $baseurl ?>admin/payment.php">Payment</a></li>
+          <li class="nav-item"> <a class="nav-link" href="<?= $baseurl ?>admin/user.php">User</a></li>
+          <li class="nav-item"> <a class="nav-link" href="<?= $baseurl ?>admin/admins.php">Admins</a></li>
+          <li class="nav-item"> <a class="nav-link" href="<?= $baseurl ?>admin/role.php">Role</a></li>
+          <li class="nav-item"> <a class="nav-link" href="<?= $baseurl ?>admin/role_access.php">Role_access</a></li>
+          
         </ul>
       </div>
     </li>

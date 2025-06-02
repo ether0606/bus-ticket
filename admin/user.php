@@ -5,7 +5,6 @@
     <div class="container-fluid page-body-wrapper">
       <!-- partial:partials/_settings-panel.html -->
       
-      
       <!-- partial -->
       <!-- partial:partials/_sidebar.html -->
       <?php include 'include/sidebar.php';?>
@@ -18,39 +17,37 @@
                 <div class="col-lg-12 grid-margin stretch-card">
                     <div class="card">
                         <div class="card-body">
-                            <h4 class="card-title">Ticket</h4>
-                            <a href="<?= $baseurl?>admin/ticket_create.php" class="btn btn-primary float-right">Add New</a>
+                            <h4 class="card-title">User</h4>
+                            <a href="<?= $baseurl?>admin/user_create.php" class="btn btn-primary float-right">Add New</a>
                             <div class="table-responsive pt-3">
                                 <table class="table table-bordered">
                                 <thead>
                                     <tr>
                                         <th>#</th>
-                                        <th>User</th>
-                                        <th>Schedule</th>
-                                        <th>Quantity</th>
-                                        <th>Total Price</th>
+                                        <th>Name</th>
+                                        <th>Contact No</th>
+                                        <th>Email</th>
+                                        <th>Address</th>
                                         <th>Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <?php
-                                        $data=$mysqli->common_query('SELECT ticket.*, user.name as user_name, schedule.id as schedule_id FROM `ticket` LEFT JOIN user ON user.id=ticket.user_id
-                                        LEFT JOIN schedule ON schedule.id=ticket.schedule_id
-                                        WHERE ticket.status=1');
+                                        $data=$mysqli->common_select('user');
                                         if(!$data['error']){
                                             foreach($data['data'] as $i=>$d){
                                     ?>
                                             <tr>
                                                 <td><?= ++$i ?></td>
-                                                <td><?= $d->user_name ?></td>
-                                                <td><?= $d->schedule_id ?></td>
-                                                <td><?= $d->ticket_qty ?></td>
-                                                <td><?= $d->grand_total ?></td>
+                                                <td><?= $d->name ?></td>
+                                                <td><?= $d->contact_no ?></td>
+                                                <td><?= $d->email ?></td>
+                                                <td><?= $d->address ?></td>
                                                 <td>
-                                                    <a href="<?= $baseurl?>admin/ticket_edit.php?id=<?= $d->id ?>" class="btn btn-info btn-xs" title="Edit">
+                                                    <a href="<?= $baseurl?>admin/user_edit.php?id=<?= $d->id ?>" class="btn btn-info btn-xs" title="Edit">
                                                         <i class="fa fa-edit"></i>
                                                     </a>
-                                                    <a href="<?= $baseurl?>admin/ticket_delete.php?id=<?= $d->id ?>" class="btn btn-danger btn-xs" title="Delete">
+                                                    <a href="<?= $baseurl?>admin/user_delete.php?id=<?= $d->id ?>" class="btn btn-danger btn-xs" title="Delete">
                                                         <i class="fa fa-trash"></i>
                                                     </a>
                                                 </td>
@@ -61,14 +58,10 @@
                                 </tbody>
                                 </table>
                             </div>
-                            </div>
                         </div>
                     </div>
-
+                </div>
               </div>
             </div>
           </div>
-          
-          
-          
 <?php include 'include/footer.php';?>
