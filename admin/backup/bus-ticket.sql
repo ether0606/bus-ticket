@@ -373,7 +373,7 @@ CREATE TABLE `ticket_details` (
 -- Table structure for table `users`
 --
 
-CREATE TABLE `users` (
+CREATE TABLE `user` (
   `id` int(11) NOT NULL,
   `name` varchar(100) DEFAULT NULL,
   `contact_no` varchar(20) DEFAULT NULL,
