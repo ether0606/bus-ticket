@@ -28,7 +28,7 @@
               <div class="card">
                 <div class="card-body">
                   <h4 class="card-title">Update Bus Counter</h4>
-                 
+                
                   <form class="forms-sample" method="post" action="">
                     <div class="form-group">
                       <label for="name">Name</label>

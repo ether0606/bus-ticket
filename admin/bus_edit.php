@@ -28,7 +28,7 @@
               <div class="card">
                 <div class="card-body">
                   <h4 class="card-title">Update Bus Company</h4>
-                 
+              
                   <form class="forms-sample" method="post" action="">
                     <div class="form-group">
                       <label for="bus_company_id">Bus Company</label>

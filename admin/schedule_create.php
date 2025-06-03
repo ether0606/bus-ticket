@@ -31,19 +31,19 @@
                           if(!$data['error']) {
                             foreach($data['data'] as $d) {
                         ?>
-                        <option value="<?= $d->id ?>"><?= $d->to_a ?> -  <?= $d->from_a ?></option>
+                        <option value="<?= $d->id ?>"><?= $d->to_a ?>  -   <?= $d->from_a ?></option>
                         <?php } } ?>
-                      </select>
+                            </select>
                     </div>
                     <div class="form-group">
-                      <label for="bus_id">Bus</label>
+                      <label for="bus_id">Bus Id</label>
                       <select class="form-control" id="bus_id" name="bus_id">
                         <?php
                         $data = $mysqli->common_select('bus');
                         if(!$data['error']) {
                             foreach($data['data'] as $d) {
                         ?>
-                        <option value="<?= $d->id ?>"><?= $d->registration_no ?></option>
+                        <option value="<?= $d->id ?>"><?= $d->id?></option>
                         <?php } } ?>
                       </select>
 

@@ -26,7 +26,7 @@
                                     <tr>
                                         <th>#</th>
                                         <th>Route Id</th>
-                                        <th>Bus Id	</th>
+                                        <th>Bus Id</th>
                                         <th>Start Counter Id</th>
                                         <th>End Counter Id</th>
                                         <th>Start Time-Date</th>
@@ -48,7 +48,7 @@
                                             <tr>
                                                 <td><?= ++$i ?></td>
                                                 <td><?= $d->from_area ?> - <?= $d->to_area ?></td>
-                                                <td><?= $d->registration_no ?></td>
+                                                <td><?= $d->bus_id?></td>
                                                 <td><?= $d->start_counter ?></td>
                                                 <td><?= $d->end_counter ?></td>
                                                 <td><?= $d->start_time_date	?></td>

@@ -27,38 +27,68 @@
                 <div class="col-12 grid-margin stretch-card">
               <div class="card">
                 <div class="card-body">
-                  <h4 class="card-title">Update Bus Schedule</h4>
-                 
+                  <h4 class="card-title">Update Schedule</h4>
+              
                   <form class="forms-sample" method="post" action="">
                     <div class="form-group">
-                      <label for="route_id">Route Id</label>
-                      <select class="form-control" id="route_id" name="route_id">
+                    <label for="route_id">Route Id</label>
+                    <select class="form-control" id="route_id" name="route_id">
+                    <?php
+                        $data = $mysqli->common_query('SELECT *, (SELECT name from area WHERE area.id=route.to_area) as to_a,(SELECT name from area WHERE area.id=route.from_area) as from_a, (SELECT name from area WHERE area.id=route.break_area) as break_a FROM `route` where route.status=1');
+                        if(!$data['error']) {
+                          foreach($data['data'] as $d) {
+                      ?>
+                      <option value="<?= $d->id ?>"><?= $data->route_id==$d->id ? "selected":""?>><?= $d->route ?></option>
+                    <?php } } ?>
+                  </select>
+                    </div>
+                    <div class="form-group">
+                    <label for="bus_id">Registration No</label>
+                      <select class="form-control" id="bus_id" name="bus_id">
                         <?php
-                          $bus_company=$mysqli->common_select('buscompany');
-                          if(!$bus_company['error']){
-                            foreach($bus_company['data'] as $d){
+                        $data = $mysqli->common_select('bus');
+                        if(!$data['error']) {
+                            foreach($data['data'] as $d) {
                         ?>
-                          <option value="<?= $d->id ?>" <?= $data->bus_company_id==$d->id ? "selected":""?>><?= $d->name ?></option>
+                        <option value="<?= $d->id ?>"><?= $d->registration_no?></option>
                         <?php } } ?>
                       </select>
                     </div>
                     <div class="form-group">
-                      <label for="registration_no">Registration Number</label>
-                      <input type="text" class="form-control" value="<?= $data->registration_no ?>" id="registration_no" name="registration_no" placeholder="Registration Number">
-                    </div>
-                    <div class="form-group">
-                      <label for="bus_type">Bus Type</label>
-                      <select class="form-control" id="bus_type" name="bus_type">
-                        <option value="AC" <?= $data->bus_type=="AC" ? "selected":""?>>AC</option>
-                        <option value="NON-AC" <?= $data->bus_type=="NON-AC" ? "selected":""?>>NON-AC</option>
-                        <option value="SLEEPER" <?= $data->bus_type=="SLEEPER" ? "selected":""?>>SLEEPER</option>
+                    <label for="start_counter_id">Start Counter</label>
+                      <select class="form-control" id="start_counter_id" name="start_counter_id">
+                        <?php
+                          $data = $mysqli->common_select('counter');
+                          if(!$data['error']) {
+                            foreach($data['data'] as $d) {
+                        ?>
+                          <option value="<?= $d->id ?>"><?= $d->name ?></option>
+                        <?php } } ?>
                       </select>
                     </div>
                     <div class="form-group">
-                      <label for="note">Note</label>
-                      <textarea class="form-control" id="note" name="note" placeholder="note"><?= $data->note ?></textarea>
+                      <label for="end_counter_id">End Counter</label>
+                      <select class="form-control" id="end_counter_id" name="end_counter_id">
+                        <?php
+                          $data = $mysqli->common_select('counter');
+                          if(!$data['error']) {
+                            foreach($data['data'] as $d) {
+                        ?>
+                          <option value="<?= $d->id ?>"><?= $d->name ?></option>
+                        <?php } } ?>
+                      </select>
                     </div>
-                    
+                    <div class="form-group">
+                      <label for="start_time_date">Start Time-Date</label>
+                      <input type="datetime-local" class="form-control" id="start_time_date" name="start_time_date" placeholder="Start Time Date">
+                    </div>
+                    <div class="form-group">
+                      <label for="has_complimantory	">Complimantory</label>
+                      <select class="form-control" id="has_complimantory" name="has_complimantory">
+                        <option value="1">Yes</option>
+                        <option value="0">No</option>
+                      </select>
+                    </div>
                     <button type="submit" class="btn btn-primary mr-2">Submit</button>
                   </form>
 
