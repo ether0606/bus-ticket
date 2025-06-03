@@ -19,7 +19,7 @@
             $error_msg="";
 
             $sql="select $fields from $table";
-            $sql.=" where status=1 ";
+            $sql.=" where deleted_at is null ";
             if($where){
                 $sql.=" and ";
                 $i=0;

@@ -121,7 +121,7 @@
 						<form action="bus_route.php" id="search_form_1" class="search_panel_content d-flex flex-lg-row flex-column align-items-lg-center align-items-start justify-content-lg-between justify-content-start">
 							<div class="search_item">
 								<div>From</div>
-								<select class="destination search_input" id="from_id" name="from" required="required">
+								<select class="destination search_input" id="area_from" name="area_from" required="required">
 									<?php
 									$data = $mysqli->common_select('area');
 									if(!$data['error']) {
@@ -133,7 +133,7 @@
 							</div>
 							<div class="search_item">
 								<div>To</div>
-								<select class="destination search_input" id="to" name="to_id" required="required">
+								<select class="destination search_input" id="area_to" name="area_to" required="required">
 									<?php
 									$data = $mysqli->common_select('area');
 									if(!$data['error']) {
@@ -145,7 +145,7 @@
 							</div>
 							<div class="search_item">
 								<div>Journey Date</div>
-								<input type="date" name="journey_date" class="check_in search_input" placeholder="YYYY-MM-DD">
+								<input type="date" name="dep_date" class="check_in search_input" placeholder="YYYY-MM-DD">
 							</div>
 							
 							<button type="submit" class="button search_button">search<span></span><span></span><span></span></button>
