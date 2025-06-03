@@ -316,12 +316,12 @@ CREATE TABLE `seatfare` (
   `id` int(11) NOT NULL,
   `route_id` int(11) DEFAULT NULL,
   `seat_id` int(11) DEFAULT NULL,
+  `fare` decimal(10,0) DEFAULT NULL,
   `status` int(11) NOT NULL DEFAULT 1 COMMENT '1 active 0 deleted',
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   `created_by` int(11) DEFAULT NULL,
-  `updated_by` int(11) DEFAULT NULL,
-  `fare` decimal(10,0) DEFAULT NULL
+  `updated_by` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -360,7 +360,6 @@ CREATE TABLE `ticket_details` (
   `ticket_id` int(11) DEFAULT NULL,
   `seat_id` int(11) DEFAULT NULL,
   `price` decimal(10,0) DEFAULT NULL,
-  `status` int(11) NOT NULL DEFAULT 1 COMMENT '1 active 0 deleted',
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   `created_by` int(11) DEFAULT NULL,
@@ -373,7 +372,7 @@ CREATE TABLE `ticket_details` (
 -- Table structure for table `users`
 --
 
-CREATE TABLE `users` (
+CREATE TABLE `user` (
   `id` int(11) NOT NULL,
   `name` varchar(100) DEFAULT NULL,
   `contact_no` varchar(20) DEFAULT NULL,

@@ -118,36 +118,37 @@
 					<!-- Search Panel -->
 
 					<div class="search_panel active">
-						<form action="#" id="search_form_1" class="search_panel_content d-flex flex-lg-row flex-column align-items-lg-center align-items-start justify-content-lg-between justify-content-start">
+						<form action="bus_route.php" id="search_form_1" class="search_panel_content d-flex flex-lg-row flex-column align-items-lg-center align-items-start justify-content-lg-between justify-content-start">
 							<div class="search_item">
-								<div>destination</div>
-								<input type="text" class="destination search_input" required="required">
-							</div>
-							<div class="search_item">
-								<div>check in</div>
-								<input type="text" class="check_in search_input" placeholder="YYYY-MM-DD">
-							</div>
-							<div class="search_item">
-								<div>check out</div>
-								<input type="text" class="check_out search_input" placeholder="YYYY-MM-DD">
-							</div>
-							<div class="search_item">
-								<div>adults</div>
-								<select name="adults" id="adults_1" class="dropdown_item_select search_input">
-									<option>01</option>
-									<option>02</option>
-									<option>03</option>
+								<div>From</div>
+								<select class="destination search_input" id="area_from" name="area_from" required="required">
+									<?php
+									$data = $mysqli->common_select('area');
+									if(!$data['error']) {
+										foreach($data['data'] as $d) {
+									?>
+									<option value="<?= $d->id ?>"><?= $d->name ?></option>
+									<?php } } ?>
 								</select>
 							</div>
 							<div class="search_item">
-								<div>children</div>
-								<select name="children" id="children_1" class="dropdown_item_select search_input">
-									<option>0</option>
-									<option>02</option>
-									<option>03</option>
+								<div>To</div>
+								<select class="destination search_input" id="area_to" name="area_to" required="required">
+									<?php
+									$data = $mysqli->common_select('area');
+									if(!$data['error']) {
+										foreach($data['data'] as $d) {
+									?>
+									<option value="<?= $d->id ?>"><?= $d->name ?></option>
+									<?php } } ?>
 								</select>
 							</div>
-							<button class="button search_button">search<span></span><span></span><span></span></button>
+							<div class="search_item">
+								<div>Journey Date</div>
+								<input type="date" name="dep_date" class="check_in search_input" placeholder="YYYY-MM-DD">
+							</div>
+							
+							<button type="submit" class="button search_button">search<span></span><span></span><span></span></button>
 						</form>
 					</div>
 				</div>
