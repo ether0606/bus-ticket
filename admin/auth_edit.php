@@ -16,7 +16,7 @@
               <div class="row">
                 <?php
                   $where['id']=$_GET['id'];
-                  $data=$mysqli->common_select('user','*',$where);
+                  $data=$mysqli->common_select('auth','*',$where);
                   if(!$data['error']){
                     $data=$data['data'][0];
                   }
@@ -24,8 +24,8 @@
                 <div class="col-12 grid-margin stretch-card">
                   <div class="card">
                     <div class="card-body">
-                      <h4 class="card-title">Update User</h4>
-                     
+                      <h4 class="card-title">Update Author</h4>
+
                       <form class="forms-sample" method="post" action="">
                         <div class="form-group">
                           <label for="name">Name</label>
@@ -54,15 +54,15 @@
                       <?php
                           if($_POST){
                             $_POST['updated_at']=date('Y-m-d H:i:s');
-                            $_POST['updated_by']=$_SESSION['user']->id;
+                            $_POST['updated_by']=$_SESSION['auth']->id;
                             if(!empty($_POST['password'])){
                               $_POST['password']=($_POST['password']);
                             }else{
                               unset($_POST['password']);
                             }
-                            $res=$mysqli->common_update('user',$_POST,$where);
+                            $res=$mysqli->common_update('auth',$_POST,$where);
                             if(!$res['error']){
-                              echo "<script>location.href='".$baseurl."admin/user.php'</script>";
+                              echo "<script>location.href='".$baseurl."admin/auth.php'</script>";
                             }else{
                               echo $res['error_msg'];
                             }
