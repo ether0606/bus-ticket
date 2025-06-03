@@ -34,29 +34,29 @@
                       <label for="route_id">Route Id</label>
                       <select class="form-control" id="route_id" name="route_id">
                         <?php
-                          $bus_company=$mysqli->common_select('buscompany');
-                          if(!$bus_company['error']){
-                            foreach($bus_company['data'] as $d){
+                          $bus=$mysqli->common_select('bus');
+                          if(!$bus['error']){
+                            foreach($bus['data'] as $d){
                         ?>
-                          <option value="<?= $d->id ?>" <?= $data->bus_company_id==$d->id ? "selected":""?>><?= $d->name ?></option>
+                          <option value="<?= $d->id ?>" <?= $data->bus_id==$d->id ? "selected":""?>><?= $d->id ?></option>
                         <?php } } ?>
                       </select>
                     </div>
                     <div class="form-group">
                       <label for="registration_no">Registration Number</label>
-                      <input type="text" class="form-control" value="<?= $data->registration_no ?>" id="registration_no" name="registration_no" placeholder="Registration Number">
+                      <input type="text" class="form-control" value="<?= $data->id ?>" id="registration_no" name="registration_no" placeholder="Registration Number">
                     </div>
                     <div class="form-group">
                       <label for="bus_type">Bus Type</label>
                       <select class="form-control" id="bus_type" name="bus_type">
-                        <option value="AC" <?= $data->bus_type=="AC" ? "selected":""?>>AC</option>
-                        <option value="NON-AC" <?= $data->bus_type=="NON-AC" ? "selected":""?>>NON-AC</option>
-                        <option value="SLEEPER" <?= $data->bus_type=="SLEEPER" ? "selected":""?>>SLEEPER</option>
+                        <option value="AC" <?= $data->id=="AC" ? "selected":""?>>AC</option>
+                        <option value="NON-AC" <?= $data->id=="NON-AC" ? "selected":""?>>NON-AC</option>
+                        <option value="SLEEPER" <?= $data->id=="SLEEPER" ? "selected":""?>>SLEEPER</option>
                       </select>
                     </div>
                     <div class="form-group">
                       <label for="note">Note</label>
-                      <textarea class="form-control" id="note" name="note" placeholder="note"><?= $data->note ?></textarea>
+                      <textarea class="form-control" id="note" name="note" placeholder="note"><?= $data->id ?></textarea>
                     </div>
                     
                     <button type="submit" class="btn btn-primary mr-2">Submit</button>
