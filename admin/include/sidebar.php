@@ -15,21 +15,21 @@
       </a>
       <div class="collapse" id="ui-basic">
         <ul class="nav flex-column sub-menu">
-          <li class="nav-item"> <a class="nav-link" href="<?= $baseurl ?>admin/bus_company.php">Bus Company</a></li>
-          <li class="nav-item"> <a class="nav-link" href="<?= $baseurl ?>admin/bus.php">Bus</a></li>
-          <li class="nav-item"> <a class="nav-link" href="<?= $baseurl ?>admin/schedule.php">Schedule</a></li>
-          <li class="nav-item"> <a class="nav-link" href="<?= $baseurl ?>admin/route.php">Route</a></li>
           <li class="nav-item"> <a class="nav-link" href="<?= $baseurl ?>admin/area.php">Area</a></li>
-          <li class="nav-item"> <a class="nav-link" href="<?= $baseurl ?>admin/seat.php">Seat</a></li>
-          <li class="nav-item"> <a class="nav-link" href="<?= $baseurl ?>admin/seatfare.php">Seatfare</a></li>
+          <li class="nav-item"> <a class="nav-link" href="<?= $baseurl ?>admin/auth.php">Auth</a></li>
           <li class="nav-item"> <a class="nav-link" href="<?= $baseurl ?>admin/counter.php">Counter</a></li>
-          <li class="nav-item"> <a class="nav-link" href="<?= $baseurl ?>admin/ticket.php">Ticket</a></li>
-          <li class="nav-item"> <a class="nav-link" href="<?= $baseurl ?>admin/ticket_details.php">Ticket Details</a></li>
-          <li class="nav-item"> <a class="nav-link" href="<?= $baseurl ?>admin/payment.php">Payment</a></li>
-          <li class="nav-item"> <a class="nav-link" href="<?= $baseurl ?>admin/user.php">User</a></li>
-          <li class="nav-item"> <a class="nav-link" href="<?= $baseurl ?>admin/admins.php">Admins</a></li>
-          <li class="nav-item"> <a class="nav-link" href="<?= $baseurl ?>admin/role.php">Role</a></li>
-          <li class="nav-item"> <a class="nav-link" href="<?= $baseurl ?>admin/role_access.php">Role_access</a></li>
+          <li class="nav-item"> <a class="nav-link" href="<?= $baseurl ?>admin/customer.php">Customer</a></li>
+          <li class="nav-item"> <a class="nav-link" href="<?= $baseurl ?>admin/discrict.php">Dictrict</a></li>
+          <li class="nav-item"> <a class="nav-link" href="<?= $baseurl ?>admin/division.php">Division</a></li>
+          <li class="nav-item"> <a class="nav-link" href="<?= $baseurl ?>admin/route.php">Route</a></li>
+          <li class="nav-item"> <a class="nav-link" href="<?= $baseurl ?>admin/schedule.php">Schedule</a></li>
+          <li class="nav-item"> <a class="nav-link" href="<?= $baseurl ?>admin/seat.php">Seat</a></li>
+          <li class="nav-item"> <a class="nav-link" href="<?= $baseurl ?>admin/steat_book.php">Seat Book</a></li>
+          <li class="nav-item"> <a class="nav-link" href="<?= $baseurl ?>admin/steat_book_details.php">Seat Book Details</a></li>
+          <li class="nav-item"> <a class="nav-link" href="<?= $baseurl ?>admin/steat_book_details.php">Seat Type</a></li>
+          <li class="nav-item"> <a class="nav-link" href="<?= $baseurl ?>admin/vehicle.php">Vehicle</a></li>
+          <li class="nav-item"> <a class="nav-link" href="<?= $baseurl ?>admin/vehicle_seat_type.php">Vehicle Seat Type</a></li>
+
           
         </ul>
       </div>
