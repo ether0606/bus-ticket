@@ -65,21 +65,13 @@ require_once('include/connection.php');
              
                       if($_POST){
                         $_POST['password']=sha1($_POST['password']);
-                        $res=$mysqli->common_select('admins','id,name,contact_no,email,is_active,role_id,status',$_POST);
+                        $res=$mysqli->common_select('auth','*',$_POST);
                         
                         if($res['error']==0){
-                          if($res['data'][0]->is_active==0){
-                            echo "<script>alert('Your account is not active')</script>";
-                          }else if($res['data'][0]->status==0){
-                            echo "<script>alert('Your account is blocked')</script>";
-                          }else{
-                            $where=array('id'=>$res['data'][0]->role_id); 
-                            $role=$mysqli->common_select('role','name,slug',$where);
-                            $_SESSION['role']=$role['data'][0];
                             $_SESSION['user']=$res['data'][0];
                             $_SESSION['log_user_status']=true;
                             echo "<script>location.href='".$baseurl."admin/index.php'</script>";
-                          }
+                          
                         }else{
                           echo "<script>alert('Login Failed')</script>";
                         }
