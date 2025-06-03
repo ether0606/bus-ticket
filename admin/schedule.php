@@ -4,8 +4,7 @@
     <!-- partial -->
     <div class="container-fluid page-body-wrapper">
       <!-- partial:partials/_settings-panel.html -->
-      
-      
+
       <!-- partial -->
       <!-- partial:partials/_sidebar.html -->
       <?php include 'include/sidebar.php';?>
@@ -25,12 +24,13 @@
                                 <thead>
                                     <tr>
                                         <th>#</th>
+                                        <th>Couch Number</th>
+                                        <th>Vehicle Id</th>
                                         <th>Route Id</th>
-                                        <th>Bus Id	</th>
-                                        <th>Start Counter Id</th>
-                                        <th>End Counter Id</th>
-                                        <th>Start Time-Date</th>
-                                        <th>Complimantory</th>
+                                        <th>Departure Time</th>
+                                        <th>Departure Counter</th>
+                                        <th>Arival Time</th>
+                                        <th>Arival Counter</th>
                                         <th>Action</th>
                                     </tr>
                                 </thead>
@@ -39,8 +39,8 @@
                                         $data=$mysqli->common_query('SELECT *, (SELECT name from area where area.id=route.to_area) as to_area,
 (SELECT name from area where area.id=route.from_area) as from_area,
 bus.registration_no,
-(SELECT counter.name from counter WHERE counter.id=schedule.start_counter_id) as start_counter,
-(SELECT counter.name from counter WHERE counter.id=schedule.end_counter_id) as end_counter
+(SELECT counter.name from counter WHERE counter.id=schedule.departure_time) as departure_Time,
+(SELECT counter.name from counter WHERE counter.id=schedule.departure_counter) as departure_counter
 FROM `schedule` JOIN route on route.id=schedule.route_id JOIN bus on bus.id=schedule.bus_id where schedule.status=1');
                                         if(!$data['error']){
                                             foreach($data['data'] as $i=>$d){
@@ -48,11 +48,15 @@ FROM `schedule` JOIN route on route.id=schedule.route_id JOIN bus on bus.id=sche
                                             <tr>
                                                 <td><?= ++$i ?></td>
                                                 <td><?= $d->from_area ?> - <?= $d->to_area ?></td>
-                                                <td><?= $d->registration_no ?></td>
-                                                <td><?= $d->start_counter ?></td>
-                                                <td><?= $d->end_counter ?></td>
-                                                <td><?= $d->start_time_date	?></td>
-                                                <td><?= $d->has_complimantory ? "YES":"NO" ?></td>
+                                                <td><?= $d->couch_number?></td>
+                                                <td><?= $d->vehicle_id?></td>
+                                                <td><?= $d->route_id ?></td>
+                                                <td><?= $d->departure_time	?></td>
+                                                <td><?= $d->departure_counter	?></td>
+                                                <td><?= $d->arival_time	?></td>
+                                                <td><?= $d->arival_counter?></td>
+
+                                                
                                                 <td>
                                                     <a href="<?= $baseurl?>admin/schedule_edit.php?id=<?= $d->id ?>" class="btn btn-info btn-xs" title="Edit">
                                                         <i class="fa fa-edit"></i>
