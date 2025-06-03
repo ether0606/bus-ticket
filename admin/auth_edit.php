@@ -32,16 +32,20 @@
                           <input type="text" class="form-control" id="name" value="<?= $data->name ?>" name="name" placeholder="Name">
                         </div>
                         <div class="form-group">
-                          <label for="contact_no">Contact No</label>
-                          <input type="text" class="form-control" id="contact_no" value="<?= $data->contact_no ?>" name="contact_no" placeholder="Contact No">
+                          <label for="email">Email Id</label>
+                          <input type="text" class="form-control" id="email" value="<?= $data->email?>" name="email" placeholder="Email">
                         </div>
                         <div class="form-group">
-                          <label for="email">Email</label>
-                          <input type="email" class="form-control" id="email" value="<?= $data->email ?>" name="email" placeholder="Email">
+                          <label for="contact">Contact Number</label>
+                          <input type="contact" class="form-control" id="contact" value="<?= $data->contact ?>" name="contact" placeholder="contact">
                         </div>
                         <div class="form-group">
-                          <label for="address">Address</label>
-                          <input type="text" class="form-control" id="address" value="<?= $data->address ?>" name="address" placeholder="Address">
+                          <label for="photo">Photo</label>
+                          <input type="file" class="form-control" id="photo" name="photo" placeholder="photo">
+                        </div> 
+                        <div class="form-group">
+                          <label for="username">User Name</label>
+                          <input type="text" class="form-control" id="username" value="<?= $data->username ?>" name="username" placeholder="User Id">
                         </div>
                         <div class="form-group">
                           <label for="password">Password</label>

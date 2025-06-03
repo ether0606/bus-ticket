@@ -25,9 +25,13 @@
                                 <thead>
                                     <tr>
                                         <th>#</th>
-                                        <th>Name</th>
-                                        <th>Address</th>
+                                        <th>Counter Name</th>
                                         <th>Contact Number</th>
+                                        <th>Area Id</th>
+                                        <th>District Id</th>
+                                        <th>Division Id</th>
+                                        <th>Address</th>
+                                        <th>Contact Person</th>
                                         <th>Action</th>
                                     </tr>
                                 </thead>
@@ -39,9 +43,13 @@
                                     ?>
                                             <tr>
                                                 <td><?= ++$i ?></td>
-                                                <td><?= $d->name ?></td>
-                                                <td><?= $d->address?></td>
+                                                <td><?= $d->counter_name ?></td>
                                                 <td><?= $d->contact_no?></td>
+                                                <td><?= $d->area_id?></td>
+                                                <td><?= $d->district_id?></td>
+                                                <td><?= $d->division_id?></td>
+                                                <td><?= $d->address?></td>
+                                                <td><?= $d->contact_person?></td>
                                                 <td>
                                                     <a href="<?= $baseurl?>admin/counter_edit.php?id=<?= $d->id ?>" class="btn btn-info btn-xs" title="Edit">
                                                         <i class="fa fa-edit"></i>

@@ -18,7 +18,7 @@
                     <div class="card">
                         <div class="card-body">
                             <h4 class="card-title">User</h4>
-                            <a href="<?= $baseurl?>admin/user_create.php" class="btn btn-primary float-right">Add New</a>
+                            <a href="<?= $baseurl?>admin/auth_create.php" class="btn btn-primary float-right">Add New</a>
                             <div class="table-responsive pt-3">
                                 <table class="table table-bordered">
                                 <thead>
@@ -49,7 +49,7 @@
                                                     <a href="<?= $baseurl?>admin/auth_edit.php?id=<?= $d->id ?>" class="btn btn-info btn-xs" title="Edit">
                                                         <i class="fa fa-edit"></i>
                                                     </a>
-                                                    <a href="<?= $baseurl?>admin/auth.php?id=<?= $d->id ?>" class="btn btn-danger btn-xs" title="Delete">
+                                                    <a href="<?= $baseurl?>admin/auth_delete.php?id=<?= $d->id ?>" class="btn btn-danger btn-xs" title="Delete">
                                                         <i class="fa fa-trash"></i>
                                                     </a>
                                                 </td>
