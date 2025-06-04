@@ -24,9 +24,9 @@
           <li class="nav-item"> <a class="nav-link" href="<?= $baseurl ?>admin/route.php">Route</a></li>
           <li class="nav-item"> <a class="nav-link" href="<?= $baseurl ?>admin/schedule.php">Schedule</a></li>
           <li class="nav-item"> <a class="nav-link" href="<?= $baseurl ?>admin/seat.php">Seat</a></li>
-          <li class="nav-item"> <a class="nav-link" href="<?= $baseurl ?>admin/steat_book.php">Seat Book</a></li>
-          <li class="nav-item"> <a class="nav-link" href="<?= $baseurl ?>admin/steat_book_details.php">Seat Book Details</a></li>
-          <li class="nav-item"> <a class="nav-link" href="<?= $baseurl ?>admin/steat_book_details.php">Seat Type</a></li>
+          <li class="nav-item"> <a class="nav-link" href="<?= $baseurl ?>admin/seat_book.php">Seat Book</a></li>
+          <li class="nav-item"> <a class="nav-link" href="<?= $baseurl ?>admin/seat_book_details.php">Seat Book Details</a></li>
+          <li class="nav-item"> <a class="nav-link" href="<?= $baseurl ?>admin/seat_type.php">Seat Type</a></li>
           <li class="nav-item"> <a class="nav-link" href="<?= $baseurl ?>admin/vehicle.php">Vehicle</a></li>
           <li class="nav-item"> <a class="nav-link" href="<?= $baseurl ?>admin/vehicle_seat_type.php">Vehicle Seat Type</a></li>
 
