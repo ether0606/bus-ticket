@@ -20,44 +20,44 @@
                 <div class="col-12 grid-margin stretch-card">
               <div class="card">
                 <div class="card-body">
-                  <h4 class="card-title">Add New Ticket</h4>
+                  <h4 class="card-title">Add New Vehicle</h4>
                  
                   <form class="forms-sample" method="post" action="">
                     <div class="form-group">
-                      <label for="ticket_id">Ticket Id</label>
-                      <input type="text" class="form-control" id="ticket_id" name="ticket_id" placeholder="Ticket Id">
+                      <label for="name">Name</label>
+                      <input type="text" class="form-control" id="name" name="name" placeholder="Name">
                     </div>
+
                     <div class="form-group">
-                      <label for="seat_id">Seat Id</label>
-                      <input type="text" class="form-control" id="seat_id" name="seat_id" placeholder="Seat Id">
+                      <label for="registration_no">Registration Number</label>
+                      <input type="text" class="form-control" id="registration_no" name="registration_no" placeholder="Registration Number">
                     </div>
-                     <div class="form-group">
-                      <label for="price">Price</label>
-                      <input type="text" class="form-control" id="price" name="price" placeholder="Price">
+
+                    <div class="form-group">
+                      <label for="vehicle_type">Vehicle Type</label>
+                      <select class="form-control" id="vehicle_type" name="vehicle_type">
+                        <option value="AC">AC</option>
+                        <option value="NON-AC">NON-AC</option>
+                        <option value="SLEEPER">SLEEPER</option>
+                      </select>
                     </div>
-                 
-                 
-                    
-  <?php
+
+                    <button type="submit" class="btn btn-primary mr-2">Submit</button>
+                  </form>
+
+                  <?php
                   
                       if($_POST){
                         $_POST['created_at']=date('Y-m-d H:i:s');
                         $_POST['created_by']=$_SESSION['user']->id;
-                        $_POST['status']=1;
-                        $res=$mysqli->common_insert('ticket_details',$_POST);
+                        $res=$mysqli->common_insert('vehicle',$_POST);
                         if(!$res['error']){
-                          echo "<script>location.href='".$baseurl."admin/ticket_details.php'</script>";
+                          echo "<script>location.href='".$baseurl."admin/vehicle.php'</script>";
                         }else{
                           echo $res['error_msg'];
                         }
                       }
                   ?>
-
-
-                    <button type="submit" class="btn btn-primary mr-2">Submit</button>
-                  </form>
-
-                 
 
                 </div>
               </div>
