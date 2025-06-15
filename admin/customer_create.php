@@ -21,7 +21,7 @@
               <div class="card">
                 <div class="card-body">
                   <h4 class="card-title">Add New Customer</h4>
-                 
+                
                   <form class="forms-sample" method="post" action="">
                     <div class="form-group">
                       <label for="name">Name</label>
@@ -38,7 +38,7 @@
                       <textarea class="form-control" id="address" name="address" placeholder="Address"></textarea>
                     </div>
                     
-                     <div class="form-group">
+                    <div class="form-group">
                       <label for="email">Email</label>
                       <input type="email" class="form-control" id="email" name="email" placeholder="email"></input>
                     </div>
