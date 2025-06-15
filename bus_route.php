@@ -100,10 +100,10 @@
           <div class="row row-50 justify-content-md-center align-items-lg-center justify-content-xl-between">
             <div class="col-md-10 col-lg-6">
               <h3>
-                <button type="button" onclick="show_seatplan(<?= $data->id ?>)" class="btn btn-link">
+                <button type="button" onclick="showSeatPlan(<?= $data->id ?>)" class="btn btn-link">
                   <?= $data->bus ?> #<?= $data->couch_number ?>
                 </button>
-                <button type="button" onclick="show_seatplan(<?= $data->id ?>)" class="btn btn-link btn-warning">View Seat-plan</button>
+                <button type="button" onclick="showSeatPlan(<?= $data->id ?>)" class="btn btn-link btn-warning">View Seat-plan</button>
               </h3>
               <p>
                 Bus Type: <?= $data->vehicle_type ?><br>
@@ -154,7 +154,7 @@
                                             <img width="25px" src="<?= $baseurl ?>assets/images/icon/seat_ash.svg" alt="">
                                           </button>
                                   <?php }else{ ?>
-                                            <button title="<?= $seat["{$r}{$c}"]->name ?? '' ?>" style="cursor: pointer;" onclick="get_seat(this)" type="button" data-schedule="<?= $data->id ?>" data-seat='<?= json_encode($seat["{$r}{$c}"]) ?>' class="btn btn-link p-0 vseat<?= $data->id ?>" value="">
+                                            <button title="<?= $seat["{$r}{$c}"]->name ?? '' ?>" style="cursor: pointer;" onclick="getSeat(this)" type="button" data-schedule="<?= $data->id ?>" data-seat='<?= json_encode($seat["{$r}{$c}"]) ?>' class="btn btn-link p-0 vseat<?= $data->id ?>" value="">
                                               <img width="25px" src="<?= $baseurl ?>assets/images/icon/seat_green.svg" alt="">
                                             </button>
                                   <?php }} ?>
@@ -291,8 +291,8 @@
 				<div class="col-lg-3 order-lg-1 order-2  ">
 					<div class="copyright_content d-flex flex-row align-items-center">
 						<div><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="assets/https://colorlib.com" target="_blank">Colorlib</a>
-<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></div>
+              Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="assets/https://colorlib.com" target="_blank">Colorlib</a>
+              <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></div>
 					</div>
 				</div>
 				<div class="col-lg-9 order-lg-2 order-1">
@@ -325,50 +325,64 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 
 </html>
 
-<!-- <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script> -->
 <script>
-  function show_seatplan(e){
-    $('.seat_plan').hide()
-    $('.seat_plan'+e).show()
-  }
-  function get_seat(e){
-    let schedule=$(e).data('schedule');
-    $(e).toggleClass('selectedSeat');
-    if($(e).hasClass('selectedSeat'))
-      $(e).find('img').attr('src','<?= $baseurl ?>assets/images/icon/seat_yellow.svg')
-    else
-      $(e).find('img').attr('src','<?= $baseurl ?>assets/images/icon/seat_green.svg')
-    let seat= $(e).data('seat');
-    let seat_data="";
-    let seat_qty=0;
-    let seat_total=0;
-    $('.vseat'+schedule+'.selectedSeat').each(function(e){
-      seat_qty++;
-      seat_total+=parseFloat($(this).data('seat').price);
-      
-      seat_data+="<tr>";
-      seat_data+="<td>"+$(this).data('seat').name+"</td>";
-      seat_data+="<td>"+$(this).data('seat').price+"</td>";
-      seat_data+="</tr>";
-      
-    })
-    $('.vehicle'+schedule).html(seat_data)
-    $('.total_qty'+schedule).html(seat_qty)
-    $('.total_price'+schedule).html(seat_total)
+// Vanilla JavaScript Implementation
 
-    
-    addToCart(seat.seat_id,seat.price,seat.name,schedule,seat.vehicle_id)
-  }
-</script>
-<script>
-  function addToCart(seat_id,price,name,schedule,vehicle_id){
-    $.get('cart_add.php',
-      { seat_id : seat_id,price:price,name:name,schedule:schedule,vehicle:vehicle_id},
-      function(data){
-        if(data){
-          console.log(data)
-        }
-      }
-    )
-  }
+// Show seat plan based on schedule
+function showSeatPlan(scheduleId) {
+  document.querySelectorAll('.seat_plan').forEach(plan => plan.style.display = 'none');
+  document.querySelector(`.seat_plan${scheduleId}`).style.display = 'block';
+}
+
+// Handle seat selection
+function getSeat(e) {
+  const schedule = e.dataset.schedule;
+  const seatData = JSON.parse(e.dataset.seat);
+  const seatImage = e.querySelector('img');
+
+  e.classList.toggle('selectedSeat');
+  seatImage.src = e.classList.contains('selectedSeat') ? '<?= $baseurl ?>assets/images/icon/seat_yellow.svg' : '<?= $baseurl ?>assets/images/icon/seat_green.svg';
+
+  updateCart(schedule);
+  addToCart(seatData, schedule);
+}
+
+// Update cart details
+function updateCart(schedule) {
+  const selectedSeats = document.querySelectorAll(`.vseat${schedule}.selectedSeat`);
+  console.log(selectedSeats)
+  let seatData = '';
+  let seatQty = 0;
+  let seatTotal = 0;
+
+  selectedSeats.forEach(seat => {
+    const data = JSON.parse(seat.dataset.seat);
+    seatQty++;
+    seatTotal += parseFloat(data.price);
+    seatData += `<tr><td>${data.name}</td><td>${data.price}</td></tr>`;
+  });
+console.log(seatData);
+  document.querySelector(`.vehicle${schedule}`).innerHTML = seatData;
+  document.querySelector(`.total_qty${schedule}`).textContent = seatQty;
+  document.querySelector(`.total_price${schedule}`).textContent = seatTotal;
+}
+
+// Add seat to cart (simulated)
+function addToCart(seatData, schedule) {
+  const cartData = {
+    seat_id: seatData.name,
+    price: seatData.price,
+    name: seatData.name,
+    schedule: schedule,
+    vehicle_id: seatData.name // Assuming vehicle_id is the same as seat name for this example
+  };
+
+  // Simulate sending data to the server
+  console.log('Added to cart:', cartData);
+}
+
+// Event listeners for seat selection
+document.querySelectorAll('.seat').forEach(seat => {
+  seat.addEventListener('click', () => getSeat(seat));
+});
 </script>
