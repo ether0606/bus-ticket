@@ -31,34 +31,37 @@
                  
                   <form class="forms-sample" method="post" action="">
                     <div class="form-group">
-                      <label for="route_id">Route Id</label>
-                      <select class="form-control" id="route_id" name="route_id">
-                        <?php
-                          $bus=$mysqli->common_select('bus');
-                          if(!$bus['error']){
-                            foreach($bus['data'] as $d){
-                        ?>
-                          <option value="<?= $d->id ?>" <?= $data->bus_id==$d->id ? "selected":""?>><?= $d->id ?></option>
-                        <?php } } ?>
-                      </select>
+                      <label for="couch_number">Couch Number</label>
+                      <input type="text" class="form-control" value="<?= $data->id ?>" id="couch_number" name="couch_number" placeholder="Couch Number">
+                     
                     </div>
                     <div class="form-group">
-                      <label for="registration_no">Registration Number</label>
-                      <input type="text" class="form-control" value="<?= $data->id ?>" id="registration_no" name="registration_no" placeholder="Registration Number">
-                    </div>
-                    <div class="form-group">
-                      <label for="bus_type">Bus Type</label>
-                      <select class="form-control" id="bus_type" name="bus_type">
-                        <option value="AC" <?= $data->id=="AC" ? "selected":""?>>AC</option>
-                        <option value="NON-AC" <?= $data->id=="NON-AC" ? "selected":""?>>NON-AC</option>
-                        <option value="SLEEPER" <?= $data->id=="SLEEPER" ? "selected":""?>>SLEEPER</option>
-                      </select>
-                    </div>
-                    <div class="form-group">
-                      <label for="note">Note</label>
-                      <textarea class="form-control" id="note" name="note" placeholder="note"><?= $data->id ?></textarea>
+                      <label for="vehicle_id">Vehicle Id</label>
+                      <input type="text" class="form-control" value="<?= $data->id ?>" id="vehicle_id" name="vehicle_id" placeholder="Vehicle">
                     </div>
                     
+                    <div class="form-group">
+                      <label for="route_id">Route Id</label>
+                      <input type="text" class="form-control" value="<?= $data->id ?>" id="route_id" name="route_id" placeholder="Vehicle">
+                    </div>
+
+                    <div class="form-group">
+                      <label for="departure_time">Departure Time</label>
+                      <input type="datetime-local" class="form-control" value="<?= $data->departure_time?>" id="departure_time" name="departure_time" placeholder="Date Time">
+                    </div>
+                    
+                    <div class="form-group">
+                      <label for="departure_counter">Departure Counter</label>
+                      <input type="text" class="form-control" value="<?= $data->id ?>" id="departure_counter" name="departure_counter" placeholder="Departure Counter">
+                    </div>
+                    <div class="form-group">
+                      <label for="arrival_time">Arival Time</label>
+                      <input type="datetime-local" class="form-control" value="<?= $data->arrival_time?>" id="arrival_time" name="arrival_time" placeholder="Date Time">
+                    </div>
+                    <div class="form-group">
+                      <label for="arrival_counter">Arrival Counter</label>
+                      <input type="text" class="form-control" value="<?= $data->id ?>" id="departurearrival_counter" name="arrival_counter" placeholder="Arival Counter">
+                    </div>
                     <button type="submit" class="btn btn-primary mr-2">Submit</button>
                   </form>
 

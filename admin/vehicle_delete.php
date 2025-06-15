@@ -6,9 +6,9 @@
 
   $data['deleted_at']=date('Y-m-d H:i:s');
   $data['updated_by']=$_SESSION['auth']->id;
-  $res=$mysqli->common_update('schedule',$data,$where);
+  $res=$mysqli->common_update('vehicle',$data,$where);
   if(!$res['error']){
-    echo "<script>location.href='".$baseurl."admin/schedule.php'</script>";
+    echo "<script>location.href='".$baseurl."admin/vehicle.php'</script>";
   }else{
     echo $res['error_msg'];
   }

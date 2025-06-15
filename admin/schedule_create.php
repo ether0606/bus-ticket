@@ -23,67 +23,33 @@
                   <h4 class="card-title">Add Bus Schedule</h4>
                   <form class="forms-sample" method="post" action="">
                     <div class="form-group">
-                      <label for="route_id">Route Id</label>
-                      <select class="form-control" id="route_id" name="route_id">
-
-                        <?php
-                          $data = $mysqli->common_query('SELECT *, (SELECT name from area WHERE area.id=route.to_area) as to_a,(SELECT name from area WHERE area.id=route.from_area) as from_a, (SELECT name from area WHERE area.id=route.break_area) as break_a FROM `route` where route.status=1');
-                          if(!$data['error']) {
-                            foreach($data['data'] as $d) {
-                        ?>
-                        <option value="<?= $d->id ?>"><?= $d->to_a ?> -  <?= $d->from_a ?></option>
-                        <?php } } ?>
-                      </select>
+                          <label for="couch_number">Couch Number</label>
+                          <input type="text" class="form-control" id="couch_number" name="couch_number" placeholder="Couch Number" required>
                     </div>
                     <div class="form-group">
-                      <label for="bus_id">Bus</label>
-                      <select class="form-control" id="bus_id" name="bus_id">
-                        <?php
-                        $data = $mysqli->common_select('bus');
-                        if(!$data['error']) {
-                            foreach($data['data'] as $d) {
-                        ?>
-                        <option value="<?= $d->id ?>"><?= $d->registration_no ?></option>
-                        <?php } } ?>
-                      </select>
-
+                          <label for="vehicle_id">Vehicle Id</label>
+                          <input type="text" class="form-control" id="vehicle_id" name="vehicle_id" placeholder="Vehicle Id" required>
                     </div>
                     <div class="form-group">
-                      <label for="start_counter_id">Start Counter</label>
-                      <select class="form-control" id="start_counter_id" name="start_counter_id">
-                        <?php
-                          $data = $mysqli->common_select('counter');
-                          if(!$data['error']) {
-                            foreach($data['data'] as $d) {
-                        ?>
-                          <option value="<?= $d->id ?>"><?= $d->name ?></option>
-                        <?php } } ?>
-                      </select>
+                    <label for="route_id">Route Id</label>
+                    <input type="text" class="form-control" id="route_id" name="route_id" placeholder="Route Id" required>
                     </div>
                     <div class="form-group">
-                      <label for="end_counter_id">End Counter</label>
-                      <select class="form-control" id="end_counter_id" name="end_counter_id">
-                        <?php
-                          $data = $mysqli->common_select('counter');
-                          if(!$data['error']) {
-                            foreach($data['data'] as $d) {
-                        ?>
-                          <option value="<?= $d->id ?>"><?= $d->name ?></option>
-                        <?php } } ?>
-                      </select>
+                    <label for="departure_time">Departure Time</label>
+                    <input type="datetime-local" class="form-control" id="departure_time" name="departure_time" placeholder="Departure Time" required>
                     </div>
                     <div class="form-group">
-                      <label for="start_time_date">Start Time-Date</label>
-                      <input type="datetime-local" class="form-control" id="start_time_date" name="start_time_date" placeholder="Start Time Date">
+                    <label for="departure_counter">Departure Counter</label>
+                    <input type="text" class="form-control" id="departure_counter" name="departure_counter" placeholder="Departure Counter" required>
                     </div>
                     <div class="form-group">
-                      <label for="has_complimantory	">Complimantory</label>
-                      <select class="form-control" id="has_complimantory" name="has_complimantory">
-                        <option value="1">Yes</option>
-                        <option value="0">No</option>
-                      </select>
+                    <label for="arrival_time">Arival Time</label>
+                    <input type="datetime-local" class="form-control" id="arrival_time" name="arrival_time" placeholder="Arival Time" required>
                     </div>
-                    
+                    <div class="form-group">
+                    <label for="arrival_counter">Arival Counter</label>
+                    <input type="text" class="form-control" id="arrival_counter" name="arrival_counter" placeholder="Arival Counter" required>
+                    </div>
                     <button type="submit" class="btn btn-primary mr-2">Submit</button>
                   </form>
 
@@ -91,7 +57,6 @@
                       if($_POST){
                         $_POST['created_at']=date('Y-m-d H:i:s');
                         $_POST['created_by']=$_SESSION['user']->id;
-                        $_POST['status']=1;
                         $res=$mysqli->common_insert('schedule',$_POST);
                         if(!$res['error']){
                           echo "<script>location.href='".$baseurl."admin/schedule.php'</script>";

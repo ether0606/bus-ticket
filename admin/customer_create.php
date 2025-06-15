@@ -20,44 +20,46 @@
                 <div class="col-12 grid-margin stretch-card">
               <div class="card">
                 <div class="card-body">
-                  <h4 class="card-title">Add New Ticket</h4>
+                  <h4 class="card-title">Add New Customer</h4>
                  
                   <form class="forms-sample" method="post" action="">
                     <div class="form-group">
-                      <label for="ticket_id">Ticket Id</label>
-                      <input type="text" class="form-control" id="ticket_id" name="ticket_id" placeholder="Ticket Id">
+                      <label for="name">Name</label>
+                      <input type="text" class="form-control" id="name" name="name" placeholder="Name">
+
                     </div>
                     <div class="form-group">
-                      <label for="seat_id">Seat Id</label>
-                      <input type="text" class="form-control" id="seat_id" name="seat_id" placeholder="Seat Id">
+                      <label for="contact_no">Contact Number</label>
+                      <input type="text" class="form-control" id="contact_no" name="contact_no" placeholder="Contact Number">
                     </div>
-                     <div class="form-group">
-                      <label for="price">Price</label>
-                      <input type="text" class="form-control" id="price" name="price" placeholder="Price">
-                    </div>
-                 
-                 
                     
-  <?php
+                    <div class="form-group">
+                      <label for="address">Address</label>
+                      <textarea class="form-control" id="address" name="address" placeholder="Address"></textarea>
+                    </div>
+                    
+                     <div class="form-group">
+                      <label for="email">Email</label>
+                      <input type="email" class="form-control" id="email" name="email" placeholder="email"></input>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary mr-2">Submit</button>
+                  </form>
+
+                  <?php
                   
                       if($_POST){
                         $_POST['created_at']=date('Y-m-d H:i:s');
-                        $_POST['created_by']=$_SESSION['user']->id;
+                        $_POST['created_by']=$_SESSION['auth']->id;
                         $_POST['status']=1;
-                        $res=$mysqli->common_insert('ticket_details',$_POST);
+                        $res=$mysqli->common_insert('customer',$_POST);
                         if(!$res['error']){
-                          echo "<script>location.href='".$baseurl."admin/ticket_details.php'</script>";
+                          echo "<script>location.href='".$baseurl."admin/customer.php'</script>";
                         }else{
                           echo $res['error_msg'];
                         }
                       }
                   ?>
-
-
-                    <button type="submit" class="btn btn-primary mr-2">Submit</button>
-                  </form>
-
-                 
 
                 </div>
               </div>

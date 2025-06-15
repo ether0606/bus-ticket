@@ -11,32 +11,25 @@
             <div class="row">
                 <div class="col-md-12 grid-margin">
                     <div class="row">
-                        <?php
-                            $where['id'] = $_GET['id'];
-                            $area_data = $mysqli->common_select('seat', '*', $where);
-                            if(!$area_data['error']) {
-                                $area = $area_data['data'][0];
-                            }
-                        ?>
                         <div class="col-12 grid-margin stretch-card">
                             <div class="card">
                                 <div class="card-body">
-                                    <h4 class="card-title">Update Seat</h4>
+                                    <h4 class="card-title">Add New Seat Type</h4>
                                     <form class="forms-sample" method="post" action="">
                                         <div class="form-group">
-                                            <label for="name">Seat</label>
-                                            <input type="text" class="form-control" id="nane" name="name" value="<?= $area->name ?>" placeholder="Seat Name" required>
+                                            <label for="name">Seat Type</label>
+                                            <input type="text" class="form-control" id="nane" name="name" placeholder="Seat Type" required>
                                         </div>
-                                        <button type="submit" class="btn btn-primary mr-2">Update</button>
+                                        <button type="submit" class="btn btn-primary mr-2">Submit</button>
                                     </form>
 
                                     <?php
                                         if($_POST) {
-                                            $_POST['updated_at'] = date('Y-m-d H:i:s');
-                                            $_POST['updated_by'] = $_SESSION['auth']->id;
-                                            $res = $mysqli->common_update('seat', $_POST, $where);
+                                            $_POST['created_at'] = date('Y-m-d H:i:s');
+                                            $_POST['created_by'] = $_SESSION['user']->id;
+                                            $res = $mysqli->common_insert('seat_type',$_POST);
                                             if(!$res['error']) {
-                                                echo "<script>location.href='".$baseurl."admin/seat.php'</script>";
+                                                echo "<script>location.href='".$baseurl."admin/seat_type.php'</script>";
                                             } else {
                                                 echo $res['error_msg'];
                                             }

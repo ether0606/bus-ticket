@@ -20,36 +20,35 @@
                 <div class="col-12 grid-margin stretch-card">
               <div class="card">
                 <div class="card-body">
-                  <h4 class="card-title">Add New Bus</h4>
+
+                  <h4 class="card-title">Add New Seat Book Details</h4>
                  
                   <form class="forms-sample" method="post" action="">
                     <div class="form-group">
-                      <label for="bus_company_id">Bus Company</label>
-                      <select class="form-control" id="bus_company_id" name="bus_company_id">
-                        <?php
-                          $data=$mysqli->common_select('buscompany');
-                          if(!$data['error']){
-                            foreach($data['data'] as $d){
-                        ?>
-                          <option value="<?= $d->id ?>"><?= $d->name ?></option>
-                        <?php } } ?>
-                      </select>
+                      <label for="name">Vehicle Id </label>
+                      <input type="text" class="form-control" id="vehicle_id" name="vehicle_id" placeholder="Vehicle Id">
                     </div>
+                 
+                  <form class="forms-sample" method="post" action="">
+                    
                     <div class="form-group">
-                      <label for="registration_no">Registration Number</label>
-                      <input type="text" class="form-control" id="registration_no" name="registration_no" placeholder="Registration Number">
+                      <label for="schedule_id">Schedule Id</label>
+                      <input type="text" class="form-control" id="schedule_id" name="schedule_id" placeholder="Schedule Id">
                     </div>
+                    
                     <div class="form-group">
-                      <label for="bus_type">Bus Type</label>
-                      <select class="form-control" id="bus_type" name="bus_type">
-                        <option value="AC">AC</option>
-                        <option value="NON-AC">NON-AC</option>
-                        <option value="SLEEPER">SLEEPER</option>
-                      </select>
+                      <label for="seat_book_id">Seat Book Id</label>
+                      <input type="text" class="form-control" id="seat_book_id" name="seat_book_id" placeholder="Seat Book Id">
                     </div>
+                    
                     <div class="form-group">
-                      <label for="note">Note</label>
-                      <textarea class="form-control" id="note" name="note" placeholder="note"></textarea>
+                      <label for="seat_id">Seat Id</label>
+                      <input type="seat_id" class="form-control" id="seat_id" name="seat_id" placeholder="Seat Id"></input>
+                    </div>
+
+                    <div class="form-group">
+                      <label for="price">Price</label>
+                      <input type="price" class="form-control" id="price" name="price" placeholder="Price"></input>
                     </div>
                     
                     <button type="submit" class="btn btn-primary mr-2">Submit</button>
@@ -60,10 +59,10 @@
                       if($_POST){
                         $_POST['created_at']=date('Y-m-d H:i:s');
                         $_POST['created_by']=$_SESSION['user']->id;
-                        $_POST['status']=1;
-                        $res=$mysqli->common_insert('bus',$_POST);
+
+                        $res=$mysqli->common_insert('seat_book_details',$_POST);
                         if(!$res['error']){
-                          echo "<script>location.href='".$baseurl."admin/bus.php'</script>";
+                          echo "<script>location.href='".$baseurl."admin/seat_book_details.php'</script>";
                         }else{
                           echo $res['error_msg'];
                         }
