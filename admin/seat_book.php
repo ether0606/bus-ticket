@@ -21,67 +21,57 @@
                             <h4 class="card-title">Seat Book</h4>
                             <a href="<?= $baseurl?>admin/seat_book_create.php" class="btn btn-primary float-right">Add New</a>
                             <div class="table-responsive pt-3">
-                                <table class="table table-bordered">
-                                <thead>
-                                    <tr>
-                                        <th>#</th>
-                                        <th>Vehicle Id</th>
-                                        <th>Schedule Id</th>
-                                        <th>Customer Id</th>
-                                        <th>Name</th>
-                                        <th>Email</th>
-                                        <th>Phone</th>
-                                        <th>Address</th>
-                                        <th>Transaction Id</th>
-                                        <th>Currency</th>
-                                        <th>Total Amount</th>
-                                        <th>Total Seat</th>
-                                        <th>Other Charge</th>
-                                        <th>Cupon Code</th>
-                                        <th>Discount</th>
-                                        <th>Status</th>
-                                        <th>Request Cancel</th>
-                                        <th>Action</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <?php
-                                        $data=$mysqli->common_select('seat_book');
-                                        if(!$data['error']){
-                                            foreach($data['data'] as $i=>$d){
-                                    ?>
-                                            <tr>
-                                                <td><?= ++$i ?></td>
-                                                <td><?= $d->vehicle_id ?></td>
-                                                <td><?= $d->schedule_id?></td>
-                                                <td><?= $d->customer_id?></td>
-                                                <td><?= $d->name?></td>
-                                                <td><?= $d->email?></td>
-                                                <td><?= $d->phone?></td>
-                                                <td><?= $d->address?></td>
-                                                <td><?= $d->transaction_id?></td>
-                                                <td><?= $d->currency?></td>
-                                                <td><?= $d->total_amount?></td>
-                                                <td><?= $d->total_seat?></td>
-                                                <td><?= $d->other_charge?></td>
-                                                <td><?= $d->coupon_code?></td>
-                                                <td><?= $d->discount?></td>
-                                                <td><?= $d->status?></td>
-                                                <td><?= $d->request_cancel?></td>
-                                                <td>
-                                                    <a href="<?= $baseurl?>admin/seat_book_edit.php?id=<?= $d->id ?>" class="btn btn-info btn-xs" title="Edit">
-                                                        <i class="fa fa-edit"></i>
-                                                    </a>
-                                                    <a href="<?= $baseurl?>admin/seat_book_delete.php?id=<?= $d->id ?>" class="btn btn-danger btn-xs" title="Delete">
-                                                        <i class="fa fa-trash"></i>
-                                                    </a>
-                                                </td>
-                                            </tr>
-                                    <?php    }
-                                        }
-                                    ?>
-                                </tbody>
-                                </table>
+                                <table class="table table-striped projects">
+              <thead>
+                <tr>
+                  <th scope="col">#</th>
+                  <th scope="col">Customer</th>
+                  <th scope="col">Route</th>
+                  <th scope="col">Order Date </th>
+                  <th scope="col">Journey Date </th>
+                  <th scope="col">Total Seat</th>
+                  <th scope="col">Total Price</th>
+                  <th scope="col">Status</th>
+                  <th scope="col">Refund</th>
+                  <th scope="col">Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                <?php 
+                    $result=$mysqli->common_query("SELECT seat_book.*, schedule.couch_number,schedule.departure_time,
+                                                          schedule.arrival_time,
+                                                          (select route.name from route WHERE route.id=schedule.route_id) as route,
+                                                          (select counter.counter_name from counter WHERE counter.id=schedule.departure_counter) as departure_counter,
+                                                          (select counter.counter_name from counter WHERE counter.id=schedule.arrival_counter) as arrival_counter,
+                                                          vehicle.name as vehicle_name, vehicle.registration_no FROM `seat_book`
+                                                          JOIN schedule on schedule.id=seat_book.schedule_id
+                                                          JOIN vehicle on vehicle.id=seat_book.vehicle_id order by seat_book.id DESC"); 
+                    if($result){
+                      if($result['data']){
+                        foreach($result['data'] as $i=>$data){
+                  ?>
+                <tr>
+                  <td><?= ++$i ?></td>
+                  <td><?= $data->name ?></td>
+                  <td><?= $data->route ?></td>
+                  <td><?= date('d-m-Y h:iA',strtotime( $data->created_at)) ?></td>
+                  <td><?= date('d-m-Y h:iA',strtotime( $data->departure_time)) ?></td>
+                  <td><?= $data->total_seat?></td>
+                  <td><?= $data->total_amount?></td>
+                  <td><?= $data->status==1 ? "canceled and refunded" : "Paid" ?></td>
+                  <td><?= $data->request_cancel==1 ? "Refund request sent" : "" ?></td>
+                  <td>
+                    <a href="<?= $baseurl ?>invoice.php?txnid=<?= $data->transaction_id ?? "" ?>" class="btn btn-success">Invoice</a>
+                      <?php if($data->status==1){ ?>
+                        <a onclick="return confirm('Are you sure?')" href="<?= $baseurl ?>admin/cencel_request.php?id=<?= $data ->id ?>&status=0" class="btn btn-danger btn-xs"> Cancel refund </a>
+                      <?php } else { ?>
+                        <a class="btn btn-danger" onclick="return confirm('Are you sure?')" href="<?= $baseurl ?>admin/cencel_request.php?id=<?= $data ->id ?>&status=1"> Refund </a>
+                      <?php } ?>
+                  </td>
+                </tr>
+                <?php }}} ?>
+              </tbody>
+            </table>
                             </div>
                             </div>
                         </div>
