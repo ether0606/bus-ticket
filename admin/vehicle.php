@@ -40,7 +40,7 @@
                                             <tr>
                                                 <td><?= ++$i ?></td>
                                                 <td><?= $d->name ?></td>
-                                                <td><?= $d->registration_no?></td>
+                                                <td><?= $d->registration_no?></td> 
                                                 <td><?= $d->vehicle_type?></td>
                                                 <td>
                                                     <a href="<?= $baseurl?>admin/vehicle_edit.php?id=<?= $d->id ?>" class="btn btn-info btn-xs" title="Edit">
