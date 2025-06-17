@@ -29,7 +29,7 @@
                                         <th>From Area</th>
                                         <th>Break Area</th>
                                         <th>To Area</th>
-                                        <th>Action</th>
+                                        <th>Actioon</th>
                                     </tr>
                                 </thead>
                                 <tbody>
