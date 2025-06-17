@@ -29,11 +29,11 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <?php
-                                                    $data = $mysqli->common_query('SELECT *, (SELECT name from area WHERE area.id=route.to_area) as to_a,(SELECT name from area WHERE area.id=route.from_area) as from_a, (SELECT name from area WHERE area.id=route.break_area) as break_a FROM `route` where route.status=1');
-                                                    if(!$data['error']) {
-                                                        foreach($data['data'] as $i => $d) {
-                                                ?>
+                                               <?php
+                                        $data = $mysqli->common_query('SELECT route.*, (SELECT name FROM area WHERE area.id=route.area_from) as from_area, (SELECT name FROM area WHERE area.id=route.break_area) as break_area, (SELECT name FROM area WHERE area.id=route.area_to) as to_area FROM `route` WHERE route.deleted_at IS NULL');
+                                        if(!$data['error']) {
+                                            foreach($data['data'] as $i => $d) {
+                                    ?>
                                                 <tr>
                                                     <td><?= ++$i ?></td>
                                                     <td><?= $d->name?? '' ?></td>
