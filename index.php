@@ -118,7 +118,7 @@
 					<!-- Search Panel -->
 
 					<div class="search_panel active">
-						<form action="bus_route.php" id="search_form_1" class="search_panel_content d-flex flex-lg-row flex-column align-items-lg-center align-items-start justify-content-lg-between justify-content-start">
+						<form action="seat_plan.php" id="search_form_1" class="search_panel_content d-flex flex-lg-row flex-column align-items-lg-center align-items-start justify-content-lg-between justify-content-start">
 							<div class="search_item">
 								<div>From</div>
 								<select class="destination search_input" id="area_from" name="area_from" required="required">

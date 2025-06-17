@@ -23,9 +23,7 @@
 	<!-- Header -->
 
 	<header class="header">
-
 		<!-- Top Bar -->
-
 		<div class="top_bar">
 			<div class="container">
 				<div class="row">
@@ -42,8 +40,17 @@
 							</ul>
 						</div>
 						<div class="user_box ml-auto">
-							<div class="user_box_login user_box_link"><a href="assets/#">login</a></div>
-							<div class="user_box_register user_box_link"><a href="assets/#">register</a></div>
+							<?php
+								if(isset($_SESSION['customer_loggedin']) && $_SESSION['customer_loggedin']){
+							?>
+									<div class="user_box_login user_box_link"><a href="profile.php">Profile</a></div>
+									<div class="user_box_register user_box_link"><a href="order.php">Order History</a></div> | 
+									<div class="user_box_register user_box_link"><a href="logout.php">Logout</a></div>
+							<?php	}else{ ?>
+									<div class="user_box_login user_box_link"><a href="login.php">login</a></div>
+									<div class="user_box_register user_box_link"><a href="register.php">register</a></div>
+							<?php } ?>
+							
 						</div>
 					</div>
 				</div>
@@ -57,7 +64,7 @@
 				<div class="row">
 					<div class="col main_nav_col d-flex flex-row align-items-center justify-content-start">
 						<div class="logo_container">
-							<div class="logo"><a href="assets/#"><img src="assets/images/logo.png" alt="">travelix</a></div>
+							<div class="logo"><a href="<?= $baseurl ?>"><img src="assets/images/logo.png" alt="">travelix</a></div>
 						</div>
 						<div class="main_nav_container ml-auto">
 							<ul class="main_nav_list">

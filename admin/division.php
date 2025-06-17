@@ -15,7 +15,7 @@
                             <div class="card">
                                 <div class="card-body">
                                     <h4 class="card-title">Division List</h4>
-                                    <a href="<?= $baseurl?>admin/area_create.php" class="btn btn-primary float-right">Add New</a>
+                                    <a href="<?= $baseurl?>admin/division_create.php" class="btn btn-primary float-right">Add New</a>
                                     <div class="table-responsive pt-3">
                                         <table class="table table-bordered">
                                             <thead>

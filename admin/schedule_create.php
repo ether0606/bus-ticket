@@ -32,13 +32,23 @@
                     </div>
                     <div class="form-group">
                     <label for="route_id">Route Id</label>
-                    <?php
-                          $data=$mysqli->common_select('route');
-                          if(!$data['error']){
-                            foreach($data['data'] as $d){
-                        ?>
-                          <option value="<?= $d->id ?>"><?= $d->name?></option>
-                        <?php } } ?>
+                    <input type="text" class="form-control" id="route_id" name="route_id" placeholder="Route Id" required>
+                    </div>
+                    <div class="form-group">
+                    <label for="departure_time">Departure Time</label>
+                    <input type="datetime-local" class="form-control" id="departure_time" name="departure_time" placeholder="Departure Time" required>
+                    </div>
+                    <div class="form-group">
+                    <label for="departure_counter">Departure Counter</label>
+                    <input type="text" class="form-control" id="departure_counter" name="departure_counter" placeholder="Departure Counter" required>
+                    </div>
+                    <div class="form-group">
+                    <label for="arrival_time">Arival Time</label>
+                    <input type="datetime-local" class="form-control" id="arrival_time" name="arrival_time" placeholder="Arival Time" required>
+                    </div>
+                    <div class="form-group">
+                    <label for="arrival_counter">Arival Counter</label>
+                    <input type="text" class="form-control" id="arrival_counter" name="arrival_counter" placeholder="Arival Counter" required>
                     </div>
                     <button type="submit" class="btn btn-primary mr-2">Submit</button>
                   </form>
@@ -47,7 +57,6 @@
                       if($_POST){
                         $_POST['created_at']=date('Y-m-d H:i:s');
                         $_POST['created_by']=$_SESSION['user']->id;
-                        $_POST['status']=1;
                         $res=$mysqli->common_insert('schedule',$_POST);
                         if(!$res['error']){
                           echo "<script>location.href='".$baseurl."admin/schedule.php'</script>";
