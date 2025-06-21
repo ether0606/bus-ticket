@@ -28,21 +28,21 @@
               <div class="card">
                 <div class="card-body">
                   <h4 class="card-title">Update Bus Schedule</h4>
-                 
+                
                   <form class="forms-sample" method="post" action="">
                     <div class="form-group">
                       <label for="couch_number">Couch Number</label>
-                      <input type="text" class="form-control" value="<?= $data->id ?>" id="couch_number" name="couch_number" placeholder="Couch Number">
-                     
+                      <input type="text" class="form-control" value="<?= $data->couch_number ?>" id="couch_number" name="couch_number" placeholder="Couch Number">
+                    
                     </div>
                     <div class="form-group">
                       <label for="vehicle_id">Vehicle Id</label>
-                      <input type="text" class="form-control" value="<?= $data->id ?>" id="vehicle_id" name="vehicle_id" placeholder="Vehicle">
+                      <input type="text" class="form-control" value="<?= $data->vehicle_id ?>" id="vehicle_id" name="vehicle_id" placeholder="Vehicle">
                     </div>
                     
                     <div class="form-group">
                       <label for="route_id">Route Id</label>
-                      <input type="text" class="form-control" value="<?= $data->id ?>" id="route_id" name="route_id" placeholder="Vehicle">
+                      <input type="text" class="form-control" value="<?= $data->route_id ?>" id="route_id" name="route_id" placeholder="Vehicle">
                     </div>
 
                     <div class="form-group">
@@ -52,7 +52,7 @@
                     
                     <div class="form-group">
                       <label for="departure_counter">Departure Counter</label>
-                      <input type="text" class="form-control" value="<?= $data->id ?>" id="departure_counter" name="departure_counter" placeholder="Departure Counter">
+                      <input type="text" class="form-control" value="<?= $data->departure_counter ?>" id="departure_counter" name="departure_counter" placeholder="Departure Counter">
                     </div>
                     <div class="form-group">
                       <label for="arrival_time">Arival Time</label>
@@ -60,7 +60,7 @@
                     </div>
                     <div class="form-group">
                       <label for="arrival_counter">Arrival Counter</label>
-                      <input type="text" class="form-control" value="<?= $data->id ?>" id="departurearrival_counter" name="arrival_counter" placeholder="Arival Counter">
+                      <input type="text" class="form-control" value="<?= $data->arrival_counter ?>" id="departurearrival_counter" name="arrival_counter" placeholder="Arival Counter">
                     </div>
                     <button type="submit" class="btn btn-primary mr-2">Submit</button>
                   </form>

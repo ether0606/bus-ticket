@@ -5,7 +5,7 @@ $where['id'] = $_GET['id'];
 
 $data['deleted_at'] = date('Y-m-d H:i:s');
 $data['updated_by'] = $_SESSION['auth']->id;
-$res = $mysqli->common_update('auth', $data, $where);
+$res = $mysqli->common_update('area', $data, $where);
 if(!$res['error']) {
     echo "<script>location.href='".$baseurl."admin/area.php'</script>";
 } else {

@@ -18,35 +18,37 @@
                 <div class="col-lg-12 grid-margin stretch-card">
                     <div class="card">
                         <div class="card-body">
-                            <h4 class="card-title">Vehicle</h4>
-                            <a href="<?= $baseurl?>admin/vehicle_create.php" class="btn btn-primary float-right">Add New</a>
+                            <h4 class="card-title">Vehicle Seat type</h4>
+                            <a href="<?= $baseurl?>admin/vehicle_seat_type_create.php" class="btn btn-primary float-right">Add New</a>
                             <div class="table-responsive pt-3">
                                 <table class="table table-bordered">
                                 <thead>
                                     <tr>
                                         <th>#</th>
-                                        <th>Name</th>
-                                        <th>Registration Number</th>
-                                        <th>Vehicle Type</th>
+                                        <th>Vehicle Id</th>
+                                        <th>Seat Id</th>
+                                        <th>Seat type id</th>
+                                        <th>Price</th>
                                         <th>Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <?php
-                                        $data=$mysqli->common_select('vehicle');
+                                        $data=$mysqli->common_select('vehicle_seat_type');
                                         if(!$data['error']){
                                             foreach($data['data'] as $i=>$d){
                                     ?>
                                             <tr>
                                                 <td><?= ++$i ?></td>
-                                                <td><?= $d->name ?></td>
-                                                <td><?= $d->registration_no?></td>
-                                                <td><?= $d->vehicle_type?></td>
+                                                <td><?= $d->vehicle_id ?></td>
+                                                <td><?= $d->seat_id?></td>
+                                                <td><?= $d->seat_type_id?></td>
+                                                <td><?= $d->price?></td>
                                                 <td>
-                                                    <a href="<?= $baseurl?>admin/vehicle_edit.php?id=<?= $d->id ?>" class="btn btn-info btn-xs" title="Edit">
+                                                    <a href="<?= $baseurl?>admin/vehicle_seat_type_edit.php?id=<?= $d->id ?>" class="btn btn-info btn-xs" title="Edit">
                                                         <i class="fa fa-edit"></i>
                                                     </a>
-                                                    <a href="<?= $baseurl?>admin/bus_delete.php?id=<?= $d->id ?>" class="btn btn-danger btn-xs" title="Delete">
+                                                    <a href="<?= $baseurl?>admin/vehicle_seat_type_delete.php?id=<?= $d->id ?>" class="btn btn-danger btn-xs" title="Delete">
                                                         <i class="fa fa-trash"></i>
                                                     </a>
                                                 </td>

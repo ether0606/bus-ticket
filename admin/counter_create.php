@@ -24,16 +24,32 @@
                  
                   <form class="forms-sample" method="post" action="">
                     <div class="form-group">
-                      <label for="name">Name</label>
-                      <input type="text" class="form-control" id="name" name="name" placeholder="Name">
-                    </div>
-                    <div class="form-group">
-                      <label for="address	">Address</label>
-                      <input type="text" class="form-control" id="address" name="address" placeholder="Address">
+                      <label for="counter_name">Counter Name</label>
+                      <input type="text" class="form-control" id="counter_name" name="counter_name" placeholder="Counter Name">
                     </div>
                     <div class="form-group">
                       <label for="contact_no">Contact Number</label>
-                      <input type="text" class="form-control" id="contact_no" name="contact_no" placeholder="Contact Number">
+                      <input type="text" class="form-control" id="contact_no" name="contact_no" placeholder="contact no">
+                    </div>
+                    <div class="form-group">
+                      <label for="contact_no">Area Id</label>
+                      <input type="text" class="form-control" id="area_id" name="area_id" placeholder="Area Id">
+                    </div>
+                    <div class="form-group">
+                      <label for="district_id">District Id</label>
+                      <input type="text" class="form-control" id="district_id" name="district_id" placeholder="District Id">
+                    </div>
+                    <div class="form-group">
+                      <label for="division_id">Division Id</label>
+                      <input type="text" class="form-control" id="division_id" name="division_id" placeholder="division_id">
+                    </div>
+                    <div class="form-group">
+                      <label for="address">Address</label>
+                      <input type="text" class="form-control" id="address" name="address" placeholder="Address">
+                    </div>
+                    <div class="form-group">
+                      <label for="contact_person">Contact Person</label>
+                      <input type="text" class="form-control" id="contact_person" name="contact_person" placeholder="Contact Person">
                     </div>
                     <button type="submit" class="btn btn-primary mr-2">Submit</button>
                   </form>

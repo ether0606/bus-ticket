@@ -42,7 +42,7 @@
                                                     <td><?= $d->seat_book_id?></td>
                                                     <td><?= $d->seat_id?></td>
                                                     <td><?= $d->price?></td>
-                                                 
+                                                
                                                     <td>
                                                         <a href="<?= $baseurl?>admin/seat_book_details_edit.php?id=<?= $d->id ?>" class="btn btn-info btn-xs" title="Edit">
                                                             <i class="fa fa-edit"></i>
