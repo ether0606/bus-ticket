@@ -1,7 +1,12 @@
 <?php
 
 if (!defined('PROJECT_PATH')) {
-    define('PROJECT_PATH', 'http://localhost/bus-ticket'); // replace this value with your project path
+    if ($_SERVER['HTTP_HOST'] == 'localhost' || $_SERVER['HTTP_HOST'] == '127.0.0.1') {
+        define('PROJECT_PATH', 'http://localhost/bus-ticket'); // replace this value with your project path
+    } else {
+        define('PROJECT_PATH', 'https://bus-ticket.wdpfctg.site'); // replace this value with your project path
+    }
+    
 }
 
 if (!defined('IS_SANDBOX')) {
