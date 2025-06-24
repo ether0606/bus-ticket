@@ -18,7 +18,7 @@
                 <?php
                   $where['id']=$_GET['id'];
                   
-                  $data=$mysqli->common_select('seat_book_details','*',$where);
+                  $data=$mysqli->common_select('vehicle_seat_type','*',$where);
                   if(!$data['error']){
                     $data=$data['data'][0];
                   }
@@ -27,24 +27,26 @@
                 <div class="col-12 grid-margin stretch-card">
               <div class="card">
                 <div class="card-body">
-                  <h4 class="card-title">Update Seat Book Details</h4>
+                  <h4 class="card-title">Update Vehicle Seat Type</h4>
                   <form class="forms-sample" method="post" action="">
                     <div class="form-group">
                       <label for="vehicle_id">Vehicle Id</label>
-                      <input type="text" class="form-control" value="<?= $data->vehicle_id?>" id="vehicle_id" name="vehicle_id" placeholder="vehicle_id">
+                      <input type="text" class="form-control" value="<?= $data->vehicle_id?>" id="vehicle_id" name="vehicle_id" placeholder="vehicle id">
                     </div>
                     <div class="form-group">
-                      <label for="registration_no">Registration Number</label>
-                      <input type="text" class="form-control" value="<?= $data->registration_no ?>" id="registration_no" name="registration_no" placeholder="Registration Number">
+                      <label for="seat_id">Seat Id</label>
+                      <input type="text" class="form-control" value="<?= $data->seat_id ?>" id="seat_id" name="seat_id" placeholder="seat id">
+                    </div>
+                    
+                    <div class="form-group">
+                      <label for="seat_type_id">Seat Type Id</label>
+                      <input type="text" class="form-control" value="<?= $data->seat_type_id ?>" id="seat_type_id" name="seat_type_id" placeholder="seat type id">
                     </div>
                     <div class="form-group">
-                      <label for="vehicle_type">Bus Type</label>
-                      <select class="form-control" id="vehicle_type" name="vehicle_type">
-                        <option value="AC" <?= $data->vehicle_type=="AC" ? "selected":""?>>AC</option>
-                        <option value="NON-AC" <?= $data->vehicle_type=="NON-AC" ? "selected":""?>>NON-AC</option>
-                        <option value="SLEEPER" <?= $data->vehicle_type=="SLEEPER" ? "selected":""?>>SLEEPER</option>
-                      </select>
+                      <label for="price">Price</label>
+                      <input type="text" class="form-control" value="<?= $data->price ?>" id="price" name="price" placeholder="price">
                     </div>
+                    
                   
                     <button type="submit" class="btn btn-primary mr-2">Submit</button>
                   </form>

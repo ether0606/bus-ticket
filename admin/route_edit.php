@@ -23,7 +23,11 @@
                                 <div class="card-body">
                                     <h4 class="card-title">Update Route</h4>
                                     <form class="forms-sample" method="post" action="">
-                                        <div class="form-group">
+                                    <div class="form-group">
+                                            <label for="name">Name</label>
+                                            <input type="text" class="form-control" id="nane" name="name" value="<?= $route->name ?>" placeholder="name" required>
+                                    </div>
+                                    <div class="form-group">
                                             <label for="from_area">From Area</label>
                                             <select class="form-control" id="from_area" name="from_area" required>
                                                 <option value="">Select Area</option>
@@ -37,7 +41,7 @@
                                                     }
                                                 ?>
                                             </select>
-                                        </div>
+                                    </div>
                                         <div class="form-group">
                                             <label for="to_area">To Area</label>
                                             <select class="form-control" id="to_area" name="to_area" required>
