@@ -29,7 +29,7 @@
           <li class="nav-item"> <a class="nav-link" href="<?= $baseurl ?>admin/seat_type.php">Seat Type</a></li>
           <li class="nav-item"> <a class="nav-link" href="<?= $baseurl ?>admin/vehicle.php">Vehicle</a></li>
           <li class="nav-item"> <a class="nav-link" href="<?= $baseurl ?>admin/vehicle_seat_type.php">Vehicle Seat Type</a></li>
-
+          <li class="nav-item"> <a class="nav-link" href="<?= $baseurl ?>admin/coupon.php">Coupon</a></li>
           
         </ul>
       </div>
