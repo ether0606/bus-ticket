@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 03, 2025 at 05:53 AM
--- Server version: 10.4.27-MariaDB
--- PHP Version: 8.2.0
+-- Generation Time: Jun 25, 2025 at 04:59 AM
+-- Server version: 10.4.32-MariaDB
+-- PHP Version: 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -105,7 +105,10 @@ INSERT INTO `area` (`id`, `name`, `created_at`, `created_by`, `updated_at`, `upd
 (61, 'Magura', NULL, NULL, NULL, NULL, NULL),
 (62, 'Meherpur', NULL, NULL, NULL, NULL, NULL),
 (63, 'Narail', NULL, NULL, NULL, NULL, NULL),
-(64, 'Satkhira', NULL, NULL, NULL, NULL, NULL);
+(64, 'Satkhira', NULL, NULL, NULL, NULL, NULL),
+(65, 'Barishal', '2025-06-15 08:35:07', 1, NULL, NULL, NULL),
+(66, 'Barishal', '2025-06-15 08:35:19', 1, NULL, 0, '2025-06-21 08:07:29'),
+(67, 'Barisal', '2025-06-15 08:35:47', 1, '2025-06-21 05:40:39', 0, '2025-06-21 08:07:32');
 
 -- --------------------------------------------------------
 
@@ -173,7 +176,27 @@ INSERT INTO `counter` (`id`, `counter_name`, `contact_no`, `area_id`, `district_
 (7, 'Jinda Bazar', '01579335', 54, 54, 8, 'Jinda Bazar Road', 'Mamun', '2024-07-13 07:03:12', 1, NULL, NULL, NULL),
 (8, 'Boro Eidgah', '01364786524', 54, 54, 8, 'Ponchopukur', 'Julfiquer', '2024-07-13 07:03:59', 1, NULL, NULL, NULL),
 (9, 'Chapainaobgonj', '01876635583', 24, 24, 11, 'Aampara moor, Chapai', 'Fahim', '2024-07-14 02:57:48', 1, NULL, NULL, NULL),
-(10, 'Saidabad', '01364786524', 1, 1, 9, 'Saidabad Bus Stand', 'Julfiquer', '2024-07-14 04:19:59', 1, NULL, NULL, NULL);
+(10, 'Saiedabad', '01364786524', 1, 1, 9, 'Saidabad Bus Stand', 'Julfiquer', '2024-07-14 04:19:59', 1, '2025-06-21 06:12:07', 1, NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `coupon`
+--
+
+CREATE TABLE `coupon` (
+  `id` int(11) NOT NULL,
+  `name` varchar(255) DEFAULT NULL,
+  `coupon_code` varchar(20) DEFAULT NULL,
+  `validity_date` datetime DEFAULT NULL,
+  `amount_type` int(11) DEFAULT NULL,
+  `amount` decimal(8,2) DEFAULT NULL,
+  `created_at` datetime DEFAULT NULL,
+  `created_by` int(11) DEFAULT NULL,
+  `updated_at` datetime DEFAULT NULL,
+  `updated_by` int(11) DEFAULT NULL,
+  `deleted_at` datetime DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -203,7 +226,9 @@ INSERT INTO `customer` (`id`, `name`, `contact_no`, `password`, `address`, `emai
 (1, 'Shafiq Tanim', '01348762', NULL, NULL, 'ahmedmukut19@gmail.com', '2024-07-14 03:56:26', 1, NULL, NULL, NULL),
 (2, 'Ibrahim khalil', '0156669998', '356a192b7913b04c54574d18c28d46e6395428ab', '2no Gate', 'kamal@yahoo.com', NULL, NULL, NULL, NULL, NULL),
 (5, 'kamal', '015', '40bd001563085fc35165329ea1ff5c5ecbdbbeef', '2no Gate', 'ether_sb@yahoo.com', NULL, NULL, '2024-08-20 08:48:50', 1, NULL),
-(7, 'KAMAL', '0156669998', NULL, NULL, NULL, NULL, NULL, '2024-08-20 08:48:02', 1, NULL);
+(7, 'KAMAL', '0156669998', NULL, NULL, NULL, NULL, NULL, '2024-08-20 08:48:02', 1, NULL),
+(8, 'Amran', '01837131953', '40bd001563085fc35165329ea1ff5c5ecbdbbeef', 'Chandgaon', 'amran@gmail.com', NULL, NULL, '2025-06-17 08:55:23', 1, NULL),
+(9, 'Amran', '01837131953', '40bd001563085fc35165329ea1ff5c5ecbdbbeef', 'Chandgaon', 'kamal@gmail.com', NULL, NULL, '2025-06-21 07:41:45', 1, NULL);
 
 -- --------------------------------------------------------
 
@@ -515,15 +540,19 @@ CREATE TABLE `seat_book` (
 --
 
 INSERT INTO `seat_book` (`id`, `vehicle_id`, `schedule_id`, `customer_id`, `name`, `email`, `phone`, `address`, `transaction_id`, `currency`, `total_amount`, `total_seat`, `other_charge`, `coupon_code`, `discount`, `status`, `request_cancel`, `created_at`, `created_by`, `updated_at`, `updated_by`, `deleted_at`) VALUES
-(1, 1, 1, 0, 'Ibrahim khalil', 'kamal@yahoo.com', '0156669998', '2no Gate', 'SSLCZ_TEST_669620985f2f5', 'BDT', '1300.00', 2, '40.00', '', 0, 0, 0, '2024-07-16 07:26:16', 1, NULL, NULL, NULL),
-(2, 1, 1, 0, 'sohana afsana', 'sohanaafsana16@gmail.com', '01876635583', 'Shishu kabarsthan, DC road, chawkbazar,chittagong', 'SSLCZ_TEST_669788725b866', 'BDT', '1300.00', 2, '40.00', '', 0, 0, 0, '2024-07-17 09:01:38', 1, NULL, NULL, NULL),
-(3, 8, 7, 0, 'shovon', 'soufianeelhouachi@gmail.com', '01318887607', '595, Shafi Bhaban, Abdul Ali Nagar, Alankar', 'SSLCZ_TEST_66a650cdb1101', 'BDT', '4200.00', 3, '60.00', '', 0, 0, 0, '2024-07-28 14:08:13', 1, NULL, NULL, NULL),
-(4, 8, 7, 0, 'shovon', 'soufianeelhouachi@gmail.com', '01318887607', '595, Shafi Bhaban, Abdul Ali Nagar, Alankar', 'SSLCZ_TEST_66a65429f235c', 'BDT', '5600.00', 4, '80.00', '', 0, 0, 0, '2024-07-28 14:22:33', 1, NULL, NULL, NULL),
-(5, 1, 1, 0, 'Ibrahim khalil', 'ether_sb@yahoo.com', '0156669998', '2no Gate', 'SSLCZ_TEST_66b85b08ae395', 'BDT', '1300.00', 2, '40.00', '', 0, 0, 0, '2024-08-11 08:32:40', 1, NULL, NULL, NULL),
-(6, 1, 1, 0, 'Ibrahim khalil', 'ether_sb@yahoo.com', '0156669998', '2no Gate', 'SSLCZ_TEST_66b85ec5d4a10', 'BDT', '1300.00', 2, '40.00', '', 0, 0, 0, '2024-08-11 08:48:37', 1, NULL, NULL, NULL),
-(7, 1, 1, 0, 'Ibrahim khalil', 'ether_sb@yahoo.com', '0156669998', '2no Gate', 'SSLCZ_TEST_66c04664351da', 'BDT', '1300.00', 2, '40.00', '', 0, 0, 0, '2024-08-17 08:42:44', 1, NULL, NULL, NULL),
-(8, 1, 1, 5, 'Ibrahim khalil', 'ether_sb@yahoo.com', '0156669998', '2no Gate', 'SSLCZ_TEST_66c047f48204d', 'BDT', '1340.00', 2, '40.00', '', 0, 1, 1, '2024-08-17 08:49:24', 1, NULL, 1, NULL),
-(9, 1, 1, 5, 'Ibrahim khalil', 'ether_sb@yahoo.com', '0156669998', '2no Gate', 'SSLCZ_TEST_66c2eefc47951', 'BDT', '1340.00', 2, '40.00', '', 0, 0, 1, '2024-08-19 09:06:36', 1, NULL, 1, NULL);
+(1, 1, 1, 0, 'Ibrahim khalil', 'kamal@yahoo.com', '0156669998', '2no Gate', 'SSLCZ_TEST_669620985f2f5', 'BDT', 1300.00, 2, 40.00, '', 0, 0, 0, '2024-07-16 07:26:16', 1, NULL, NULL, NULL),
+(2, 1, 1, 0, 'sohana afsana', 'sohanaafsana16@gmail.com', '01876635583', 'Shishu kabarsthan, DC road, chawkbazar,chittagong', 'SSLCZ_TEST_669788725b866', 'BDT', 1300.00, 2, 40.00, '', 0, 0, 0, '2024-07-17 09:01:38', 1, NULL, NULL, NULL),
+(3, 8, 7, 0, 'shovon', 'soufianeelhouachi@gmail.com', '01318887607', '595, Shafi Bhaban, Abdul Ali Nagar, Alankar', 'SSLCZ_TEST_66a650cdb1101', 'BDT', 4200.00, 3, 60.00, '', 0, 0, 0, '2024-07-28 14:08:13', 1, NULL, NULL, NULL),
+(4, 8, 7, 0, 'shovon', 'soufianeelhouachi@gmail.com', '01318887607', '595, Shafi Bhaban, Abdul Ali Nagar, Alankar', 'SSLCZ_TEST_66a65429f235c', 'BDT', 5600.00, 4, 80.00, '', 0, 0, 0, '2024-07-28 14:22:33', 1, NULL, NULL, NULL),
+(5, 1, 1, 0, 'Ibrahim khalil', 'ether_sb@yahoo.com', '0156669998', '2no Gate', 'SSLCZ_TEST_66b85b08ae395', 'BDT', 1300.00, 2, 40.00, '', 0, 0, 0, '2024-08-11 08:32:40', 1, NULL, NULL, NULL),
+(6, 1, 1, 0, 'Ibrahim khalil', 'ether_sb@yahoo.com', '0156669998', '2no Gate', 'SSLCZ_TEST_66b85ec5d4a10', 'BDT', 1300.00, 2, 40.00, '', 0, 0, 0, '2024-08-11 08:48:37', 1, NULL, NULL, NULL),
+(7, 1, 1, 0, 'Ibrahim khalil', 'ether_sb@yahoo.com', '0156669998', '2no Gate', 'SSLCZ_TEST_66c04664351da', 'BDT', 1300.00, 2, 40.00, '', 0, 0, 0, '2024-08-17 08:42:44', 1, NULL, NULL, NULL),
+(8, 1, 1, 5, 'Ibrahim khalil', 'ether_sb@yahoo.com', '0156669998', '2no Gate', 'SSLCZ_TEST_66c047f48204d', 'BDT', 1340.00, 2, 40.00, '', 0, 1, 1, '2024-08-17 08:49:24', 1, NULL, 1, NULL),
+(9, 1, 1, 5, 'Ibrahim khalil', 'ether_sb@yahoo.com', '0156669998', '2no Gate', 'SSLCZ_TEST_66c2eefc47951', 'BDT', 1340.00, 2, 40.00, '', 0, 0, 1, '2024-08-19 09:06:36', 1, NULL, 1, NULL),
+(10, 8, 9, 8, 'Amran', 'amran@gmail.com', '01837131953', 'Chandgaon', 'SSLCZ_TEST_685117018dbe9', 'BDT', 2840.00, 2, 40.00, '', 0, 0, 0, '2025-06-17 09:19:29', 1, NULL, NULL, NULL),
+(11, 0, 0, 8, 'Amran', 'amran@gmail.com', '01837131953', 'Chandgaon', 'SSLCZ_TEST_68511703dbfc6', 'BDT', 0.00, 0, 0.00, '', 0, 0, 0, '2025-06-17 09:19:31', 1, NULL, NULL, NULL),
+(12, 3, 12, 9, 'Amran', 'kamal@gmail.com', '01837131953', 'Chandgaon', 'SSLCZ_TEST_68565541d04c7', 'BDT', 1400.00, 2, 40.00, '', 0, 0, 0, '2025-06-21 08:46:25', 1, NULL, NULL, NULL),
+(13, 3, 12, 9, 'Amran', 'kamal@gmail.com', '01837131953', 'Chandgaon', 'SSLCZ_TEST_68578eeeb0ed4', 'BDT', 3940.00, 4, 80.00, '', 0, 0, 0, '2025-06-22 07:04:46', 1, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -550,27 +579,35 @@ CREATE TABLE `seat_book_details` (
 --
 
 INSERT INTO `seat_book_details` (`id`, `vehicle_id`, `schedule_id`, `seat_book_id`, `seat_id`, `price`, `created_at`, `created_by`, `updated_at`, `updated_by`, `deleted_at`) VALUES
-(1, 1, 1, 1, 1, '650.00', '2024-07-16 07:26:16', 0, NULL, NULL, NULL),
-(2, 1, 1, 1, 2, '650.00', '2024-07-16 07:26:16', 0, NULL, NULL, NULL),
-(3, 1, 1, 2, 5, '650.00', '2024-07-17 09:01:38', 0, NULL, NULL, NULL),
-(4, 1, 1, 2, 6, '650.00', '2024-07-17 09:01:38', 0, NULL, NULL, NULL),
-(5, 8, 7, 3, 1, '1400.00', '2024-07-28 14:08:13', 0, NULL, NULL, NULL),
-(6, 8, 7, 3, 5, '1400.00', '2024-07-28 14:08:13', 0, NULL, NULL, NULL),
-(7, 8, 7, 3, 9, '1400.00', '2024-07-28 14:08:13', 0, NULL, NULL, NULL),
-(8, 8, 7, 4, 13, '1400.00', '2024-07-28 14:22:33', 0, NULL, NULL, NULL),
-(9, 8, 7, 4, 17, '1400.00', '2024-07-28 14:22:33', 0, NULL, NULL, NULL),
-(10, 8, 7, 4, 21, '1400.00', '2024-07-28 14:22:33', 0, NULL, NULL, NULL),
-(11, 8, 7, 4, 25, '1400.00', '2024-07-28 14:22:34', 0, NULL, NULL, NULL),
-(12, 1, 1, 5, 3, '650.00', '2024-08-11 08:32:40', 0, NULL, NULL, NULL),
-(13, 1, 1, 5, 7, '650.00', '2024-08-11 08:32:40', 0, NULL, NULL, NULL),
-(14, 1, 1, 6, 4, '650.00', '2024-08-11 08:48:37', 0, NULL, NULL, NULL),
-(15, 1, 1, 6, 8, '650.00', '2024-08-11 08:48:37', 0, NULL, NULL, NULL),
-(16, 1, 1, 7, 9, '650.00', '2024-08-17 08:42:44', 0, NULL, NULL, NULL),
-(17, 1, 1, 7, 10, '650.00', '2024-08-17 08:42:44', 0, NULL, NULL, NULL),
-(18, 1, 1, 8, 11, '650.00', '2024-08-17 08:49:24', 0, NULL, NULL, NULL),
-(19, 1, 1, 8, 12, '650.00', '2024-08-17 08:49:24', 0, NULL, NULL, NULL),
-(20, 1, 1, 9, 13, '650.00', '2024-08-19 09:06:36', 0, NULL, NULL, NULL),
-(21, 1, 1, 9, 14, '650.00', '2024-08-19 09:06:36', 0, NULL, NULL, NULL);
+(1, 1, 1, 1, 1, 650.00, '2024-07-16 07:26:16', 0, NULL, NULL, NULL),
+(2, 1, 1, 1, 2, 650.00, '2024-07-16 07:26:16', 0, NULL, NULL, NULL),
+(3, 1, 1, 2, 5, 650.00, '2024-07-17 09:01:38', 0, NULL, NULL, NULL),
+(4, 1, 1, 2, 6, 650.00, '2024-07-17 09:01:38', 0, NULL, NULL, NULL),
+(5, 8, 7, 3, 1, 1400.00, '2024-07-28 14:08:13', 0, NULL, NULL, NULL),
+(6, 8, 7, 3, 5, 1400.00, '2024-07-28 14:08:13', 0, NULL, NULL, NULL),
+(7, 8, 7, 3, 9, 1400.00, '2024-07-28 14:08:13', 0, NULL, NULL, NULL),
+(8, 8, 7, 4, 13, 1400.00, '2024-07-28 14:22:33', 0, NULL, NULL, NULL),
+(9, 8, 7, 4, 17, 1400.00, '2024-07-28 14:22:33', 0, NULL, NULL, NULL),
+(10, 8, 7, 4, 21, 1400.00, '2024-07-28 14:22:33', 0, NULL, NULL, NULL),
+(11, 8, 7, 4, 25, 1400.00, '2024-07-28 14:22:34', 0, NULL, NULL, NULL),
+(12, 1, 1, 5, 3, 650.00, '2024-08-11 08:32:40', 0, NULL, NULL, NULL),
+(13, 1, 1, 5, 7, 650.00, '2024-08-11 08:32:40', 0, NULL, NULL, NULL),
+(14, 1, 1, 6, 4, 650.00, '2024-08-11 08:48:37', 0, NULL, NULL, NULL),
+(15, 1, 1, 6, 8, 650.00, '2024-08-11 08:48:37', 0, NULL, NULL, NULL),
+(16, 1, 1, 7, 9, 650.00, '2024-08-17 08:42:44', 0, NULL, NULL, NULL),
+(17, 1, 1, 7, 10, 650.00, '2024-08-17 08:42:44', 0, NULL, NULL, NULL),
+(18, 1, 1, 8, 11, 650.00, '2024-08-17 08:49:24', 0, NULL, NULL, NULL),
+(19, 1, 1, 8, 12, 650.00, '2024-08-17 08:49:24', 0, NULL, NULL, NULL),
+(20, 1, 1, 9, 13, 650.00, '2024-08-19 09:06:36', 0, NULL, NULL, NULL),
+(21, 1, 1, 9, 14, 650.00, '2024-08-19 09:06:36', 0, NULL, NULL, NULL),
+(22, 8, 9, 10, 242, 1400.00, '2025-06-17 09:19:29', 8, NULL, NULL, NULL),
+(23, 8, 9, 10, 243, 1400.00, '2025-06-17 09:19:29', 8, NULL, NULL, NULL),
+(24, 3, 12, 12, 61, 680.00, '2025-06-21 08:46:25', 9, NULL, NULL, NULL),
+(25, 3, 12, 12, 62, 680.00, '2025-06-21 08:46:25', 9, NULL, NULL, NULL),
+(26, 3, 12, 13, 164, 1250.00, '2025-06-22 07:04:46', 9, NULL, NULL, NULL),
+(27, 3, 12, 13, 165, 1250.00, '2025-06-22 07:04:46', 9, NULL, NULL, NULL),
+(28, 3, 12, 13, 73, 680.00, '2025-06-22 07:04:46', 9, NULL, NULL, NULL),
+(29, 3, 12, 13, 74, 680.00, '2025-06-22 07:04:46', 9, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -1073,13 +1110,13 @@ ALTER TABLE `seat`
 -- AUTO_INCREMENT for table `seat_book`
 --
 ALTER TABLE `seat_book`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `seat_book_details`
 --
 ALTER TABLE `seat_book_details`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 
 --
 -- AUTO_INCREMENT for table `seat_type`
