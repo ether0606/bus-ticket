@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 26, 2025 at 10:39 AM
+-- Generation Time: Jun 26, 2025 at 12:16 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -204,6 +204,16 @@ CREATE TABLE `coupon` (
   `updated_by` int(11) DEFAULT NULL,
   `deleted_at` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `coupon`
+--
+
+INSERT INTO `coupon` (`id`, `name`, `coupon_code`, `validity_date`, `amount_type`, `amount`, `status`, `created_at`, `created_by`, `updated_at`, `updated_by`, `deleted_at`) VALUES
+(5, 'Eid offer', 'EID2025', '2025-06-30 00:00:00', 2, 100.00, 0, '2025-06-26 11:23:03', 1, '2025-06-26 11:32:59', 1, '2025-06-26 11:35:16'),
+(6, 'New Year  Offer', 'NEW25', '2025-06-22 12:00:00', 1, 5.00, 1, '2025-06-26 11:34:25', 1, '2025-06-26 11:36:32', 1, '2025-06-26 11:34:38'),
+(7, 'Eid offer', 'EID25', '2025-06-30 00:00:00', 1, 5.00, 1, '2025-06-26 11:40:49', 1, NULL, NULL, NULL),
+(8, 'Utshob Offer', 'UT11', '2025-06-30 12:00:00', 2, 85.00, 1, '2025-06-26 11:52:19', 1, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -643,7 +653,7 @@ INSERT INTO `seat_book_details` (`id`, `vehicle_id`, `schedule_id`, `seat_book_i
 (29, 3, 12, 13, 74, 680.00, '2025-06-22 07:04:46', 9, NULL, NULL, NULL, NULL),
 (30, 1, 12, 12, 25, 650.00, '2025-06-26 09:48:46', 1, NULL, NULL, NULL, NULL),
 (31, 3, 12, 12, 62, 220.00, '2025-06-26 09:49:17', 1, NULL, NULL, NULL, NULL),
-(32, 2, 4, 2, 4, 480.00, '2025-06-26 09:51:38', 1, '2025-06-26 09:51:54', 1, NULL, 1);
+(32, 2, 4, 2, 4, 480.00, '2025-06-26 09:51:38', 1, '2025-06-26 11:53:30', 1, NULL, 1);
 
 -- --------------------------------------------------------
 
@@ -659,7 +669,7 @@ CREATE TABLE `seat_type` (
   `updated_at` datetime DEFAULT NULL,
   `updated_by` int(11) DEFAULT NULL,
   `deleted_at` datetime DEFAULT NULL,
-  `status` int(11) DEFAULT NULL
+  `status` int(11) DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -667,8 +677,9 @@ CREATE TABLE `seat_type` (
 --
 
 INSERT INTO `seat_type` (`id`, `name`, `created_at`, `created_by`, `updated_at`, `updated_by`, `deleted_at`, `status`) VALUES
-(1, 'Economy Class', '2024-06-23 05:05:39', 1, '2024-06-30 08:25:10', 1, '2025-06-26 08:28:45', 1),
-(2, 'Business Class', '2024-06-30 08:20:45', 1, '2024-06-30 08:25:45', 1, NULL, 1);
+(1, 'Economy Class', '2024-06-23 05:05:39', 1, '2025-06-26 12:13:12', 1, '2025-06-26 08:28:45', 1),
+(5, 'Business Class', '2025-06-26 12:11:09', 1, NULL, NULL, NULL, NULL),
+(6, 'Business Class', '2025-06-26 12:13:26', 1, NULL, NULL, NULL, 1);
 
 -- --------------------------------------------------------
 
@@ -988,7 +999,8 @@ INSERT INTO `vehicle_seat_type` (`id`, `vehicle_id`, `seat_id`, `seat_type_id`, 
 (258, 2, 4, 1, 480.00, '2025-06-26 10:03:14', 1, NULL, NULL, NULL, 1),
 (259, 2, 4, 1, 600.00, '2025-06-26 10:04:46', 1, NULL, NULL, NULL, 1),
 (260, 2, 4, 1, 650.00, '2025-06-26 10:04:55', 1, '2025-06-26 10:06:30', 0, '2025-06-26 10:05:03', 1),
-(261, 2, 4, 1, 100.00, '2025-06-26 10:06:45', 1, NULL, NULL, NULL, 1);
+(261, 2, 4, 1, 200.00, '2025-06-26 10:06:45', 1, '2025-06-26 11:53:43', 0, '2025-06-26 11:55:19', 0),
+(262, 2, 62, 1, 330.00, '2025-06-26 11:54:28', 1, NULL, 0, '2025-06-26 11:55:11', 0);
 
 --
 -- Indexes for dumped tables
@@ -1112,7 +1124,7 @@ ALTER TABLE `counter`
 -- AUTO_INCREMENT for table `coupon`
 --
 ALTER TABLE `coupon`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `customer`
@@ -1166,7 +1178,7 @@ ALTER TABLE `seat_book_details`
 -- AUTO_INCREMENT for table `seat_type`
 --
 ALTER TABLE `seat_type`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `vehicle`
@@ -1178,7 +1190,7 @@ ALTER TABLE `vehicle`
 -- AUTO_INCREMENT for table `vehicle_seat_type`
 --
 ALTER TABLE `vehicle_seat_type`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=262;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=263;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
