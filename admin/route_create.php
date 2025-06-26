@@ -16,6 +16,10 @@
                                 <div class="card-body">
                                     <h4 class="card-title">Add New Route</h4>
                                     <form class="forms-sample" method="post" action="">
+                                    <div class="form-group">
+                                        <label for="name">Route Name</label>
+                                        <input type="text" class="form-control" id="name" name="name" placeholder="Route Name">
+                                        </div>
                                         <div class="form-group">
                                             <label for="from_area">From Area</label>
                                             <select class="form-control" id="from_area" name="from_area" required>

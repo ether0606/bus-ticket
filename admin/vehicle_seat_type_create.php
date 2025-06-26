@@ -52,7 +52,7 @@
                         $_POST['created_by']=$_SESSION['user']->id;
                         $res=$mysqli->common_insert('vehicle_seat_type',$_POST);
                         if(!$res['error']){
-                          echo "<script>location.href='".$baseurl."admin/vehicle.php'</script>";
+                          echo "<script>location.href='".$baseurl."admin/vehicle_seat_type.php'</script>";
                         }else{
                           echo $res['error_msg'];
                         }

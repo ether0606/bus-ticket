@@ -24,7 +24,7 @@
                 <div class="col-12 grid-margin stretch-card">
                   <div class="card">
                     <div class="card-body">
-                      <h4 class="card-title">Update Author</h4>
+                      <h4 class="card-title">Update Customer</h4>
 
                       <form class="forms-sample" method="post" action="">
                         <div class="form-group">
@@ -56,9 +56,9 @@
                             }else{
                               unset($_POST['password']);
                             }
-                            $res=$mysqli->common_update('auth',$_POST,$where);
+                            $res=$mysqli->common_update('customer',$_POST,$where);
                             if(!$res['error']){
-                              echo "<script>location.href='".$baseurl."admin/auth.php'</script>";
+                              echo "<script>location.href='".$baseurl."admin/customer.php'</script>";
                             }else{
                               echo $res['error_msg'];
                             }

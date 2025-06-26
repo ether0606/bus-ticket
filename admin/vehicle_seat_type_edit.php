@@ -55,9 +55,9 @@
                       if($_POST){
                         $_POST['updated_at']=date('Y-m-d H:i:s');
                         $_POST['updated_by']=$_SESSION['auth']->id;
-                        $res=$mysqli->common_update('vehicle',$_POST,$where);
+                        $res=$mysqli->common_update('vehicle_seat_type',$_POST,$where);
                         if(!$res['error']){
-                          echo "<script>location.href='".$baseurl."admin/vehicle.php'</script>";
+                          echo "<script>location.href='".$baseurl."admin/vehicle_seat_type.php'</script>";
                         }else{
                           echo $res['error_msg'];
                         }

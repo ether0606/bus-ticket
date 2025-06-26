@@ -8,7 +8,7 @@
   $data['updated_by']=$_SESSION['auth']->id;
   $res=$mysqli->common_update('vehicle_seat_type',$data,$where);
   if(!$res['error']){
-    echo "<script>location.href='".$baseurl."admin/vehicle.php'</script>";
+    echo "<script>location.href='".$baseurl."admin/vehicle_seat_type.php'</script>";
   }else{
     echo $res['error_msg'];
   }

@@ -51,7 +51,7 @@
                       <?php
                           if($_POST){
                             $_POST['created_at']=date('Y-m-d H:i:s');
-                            $_POST['created_by']=$_SESSION['auth']->id;
+                            $_POST['created_by']=$_SESSION['user']->id;
                             $_POST['password']=($_POST['password']);
                             $res=$mysqli->common_insert('auth',$_POST);
                             if(!$res['error']){

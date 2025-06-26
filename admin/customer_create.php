@@ -50,7 +50,7 @@
                   
                       if($_POST){
                         $_POST['created_at']=date('Y-m-d H:i:s');
-                        $_POST['created_by']=$_SESSION['auth']->id;
+                        $_POST['created_by']=$_SESSION['user']->id;
                         $_POST['status']=1;
                         $res=$mysqli->common_insert('customer',$_POST);
                         if(!$res['error']){
