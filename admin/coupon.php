@@ -42,7 +42,7 @@
                                                     <td><?= $d->coupon_code ?></td>
                                                     <td><?= date('Y-m-d H:i:s', strtotime($d->validity_date)) ?></td>
                                                     <td><?= $amount_type ?></td>
-                                                    <td><?= number_format($d->amount, 2).'%'?></td>
+                                                    <td><?= number_format($d->amount, 2)?></td>
                                                     <td>
                                                         <a href="<?= $baseurl?>admin/coupon_edit.php?id=<?= $d->id ?>" class="btn btn-info btn-xs">
                                                             <i class="fa fa-edit"></i>
