@@ -26,6 +26,7 @@
                                     <tr>
                                         <th>#</th>
                                         <th>Seat</th>
+                                        <th>Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
