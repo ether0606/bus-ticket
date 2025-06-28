@@ -28,14 +28,14 @@
                                             <input type="text" class="form-control" id="nane" name="name" value="<?= $route->name ?>" placeholder="name" required>
                                     </div>
                                     <div class="form-group">
-                                            <label for="from_area">From Area</label>
-                                            <select class="form-control" id="from_area" name="from_area" required>
+                                            <label for="area_from">Area From</label>
+                                            <select class="form-control" id="area_from" name="area_from" required>
                                                 <option value="">Select Area</option>
                                                 <?php
                                                     $areas = $mysqli->common_select('area');
                                                     if(!$areas['error']) {
                                                         foreach($areas['data'] as $a) {
-                                                            $selected = $route->from_area == $a->id ? 'selected' : '';
+                                                            $selected = $route->area_from == $a->id ? 'selected' : '';
                                                             echo "<option value='{$a->id}' $selected>{$a->name}</option>";
                                                         }
                                                     }
@@ -43,13 +43,13 @@
                                             </select>
                                     </div>
                                         <div class="form-group">
-                                            <label for="to_area">To Area</label>
-                                            <select class="form-control" id="to_area" name="to_area" required>
+                                            <label for="area_to">Area To</label>
+                                            <select class="form-control" id="area_to" name="area_to" required>
                                                 <option value="">Select Area</option>
                                                 <?php
                                                     if(!$areas['error']) {
                                                         foreach($areas['data'] as $a) {
-                                                            $selected = $route->to_area == $a->id ? 'selected' : '';
+                                                            $selected = $route->area_to == $a->id ? 'selected' : '';
                                                             echo "<option value='{$a->id}' $selected>{$a->name}</option>";
                                                         }
                                                     }

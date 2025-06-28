@@ -26,24 +26,24 @@
                                     <tr>
                                         <th>#</th>
                                         <th>Name</th>
-                                        <th>From Area</th>
+                                        <th>Area From</th>
                                         <th>Break Area</th>
-                                        <th>To Area</th>
+                                        <th>Area To</th>
                                         <th>Actioon</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <?php
-                                        $data = $mysqli->common_query('SELECT route.*, (SELECT name FROM area WHERE area.id=route.from_area) as from_area, (SELECT name FROM area WHERE area.id=route.break_area) as break_area, (SELECT name FROM area WHERE area.id=route.to_area) as to_area FROM `route` WHERE route.deleted_at IS NULL');
+                                        $data = $mysqli->common_query('SELECT route.*, (SELECT name FROM area WHERE area.id=route.area_from) as area_from, (SELECT name FROM area WHERE area.id=route.break_area) as break_area, (SELECT name FROM area WHERE area.id=route.area_to) as area_to FROM `route` WHERE route.deleted_at IS NULL');
                                         if(!$data['error']) {
                                             foreach($data['data'] as $i => $d) {
                                     ?>
                                             <tr>
                                                 <td><?= ++$i ?></td>
                                                 <td><?= $d->name ?></td>
-                                                <td><?= $d->from_area ?></td>
+                                                <td><?= $d->area_from ?></td>
                                                 <td><?= $d->break_area ?? 'N/A' ?></td>
-                                                <td><?= $d->to_area ?></td>
+                                                <td><?= $d->area_to ?></td>
                                                 <td>
                                                     <a href="<?= $baseurl?>admin/route_edit.php?id=<?= $d->id ?>" class="btn btn-info btn-xs" title="Edit">
                                                         <i class="fa fa-edit"></i>
