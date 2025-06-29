@@ -50,6 +50,16 @@ if(!isset($_SESSION['cart'])){ ?>
 				<div class="col-md-12">
 					<h2 class="h3 mb-3 text-black">Your Order</h2>
 					<div class="p-3 p-lg-5 border bg-white">
+						<div class="form-group">
+							<label for="coupon_code">Coupon Code</label>
+							<div class="input-group">
+								<input type="text" class="form-control" id="coupon_code" placeholder="Enter coupon code">
+								<div class="input-group-append">
+									<button class="btn btn-primary" onclick="applyCoupon()">Apply</button>
+								</div>
+							</div>
+							<span id="coupon_message" class="text-danger"></span>
+						</div>
 						<table class="table site-block-order-table mb-5">
 							<thead>
 								<th>Product</th>
@@ -68,7 +78,7 @@ if(!isset($_SESSION['cart'])){ ?>
 										</tr>
 										<tr>
 											<td class="text-black font-weight-bold"><strong>Discount</strong></td>
-											<td class="text-black">BDT <?= $_SESSION['cart']['discount'] ?></td>
+											<td class="text-black">BDT <span id="discount_amount"><?= $_SESSION['cart']['discount'] ?? 0 ?></span></td>
 										</tr>
 										<tr>
 											<td class="text-black font-weight-bold"><strong>Platform Charges</strong></td>
@@ -76,8 +86,9 @@ if(!isset($_SESSION['cart'])){ ?>
 										</tr>
 										<tr>
 											<td class="text-black font-weight-bold"><strong>Order Total</strong></td>
-											<td class="text-black">BDT <?= ($_SESSION['cart']['total'] + $_SESSION['cart']['other_charge'] ) - $_SESSION['cart']['discount'] ?></td>
+											<td class="text-black">BDT <span id="grand_total"><?= ($_SESSION['cart']['total'] + $_SESSION['cart']['other_charge'] ) - ($_SESSION['cart']['discount'] ?? 0) ?></span></td>
 										</tr>
+										
 							</tbody>
 						</table>
 
@@ -87,6 +98,32 @@ if(!isset($_SESSION['cart'])){ ?>
 		</div>
 	</div>
 <?php } ?>
+
+<script>
+function applyCoupon() {
+    const couponCode = $('#coupon_code').val();
+    
+    $.ajax({
+        url: 'check_coupon.php',
+        type: 'GET',
+        data: { code: couponCode },
+        dataType: 'json',
+        success: function(response) {
+            if (response.success) {
+                $('td:contains("Discount")').next().text('BDT ' + response.discount);
+                $('td:contains("Order Total")').next().text('BDT ' + response.grand_total);
+                $('#coupon_message').html('<span class="text-success">'+response.message+'</span>');
+                location.reload();
+            } else {
+                $('#coupon_message').html('<span class="text-danger">' + response.message + '</span>');
+            }
+        },
+        error: function(xhr) {
+            $('#coupon_message').html('<span class="text-danger">Error applying coupon</span>');
+        }
+    });
+}
+</script>
 
 <?php require_once('include/footer.php')?>
 						

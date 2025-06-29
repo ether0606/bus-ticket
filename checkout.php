@@ -15,8 +15,7 @@ use SslCommerz\SslCommerzNotification;
 
 # Organize the submitted/inputted data
 $post_data = array();
-$total_amount=($_SESSION['cart']['total'] + $_SESSION['cart']['other_charge']) - $_SESSION['cart']['discount'];
-$post_data['total_amount'] =$total_amount;
+$total_amount = ($_SESSION['cart']['total'] + $_SESSION['cart']['other_charge']) - ($_SESSION['cart']['discount'] ?? 0);$post_data['total_amount'] =$total_amount;
 $post_data['currency'] = "BDT";
 $post_data['tran_id'] = "SSLCZ_TEST_" . uniqid();
 
@@ -57,7 +56,8 @@ $_POST['schedule_id']=$_SESSION['cart']['schedule_id'];
 $_POST['total_amount']=$total_amount;
 $_POST['total_seat']=$_SESSION['cart']['total_seat'];
 $_POST['other_charge']=$_SESSION['cart']['other_charge'];
-$_POST['discount']=$_SESSION['cart']['discount'];
+$_POST['coupon_code'] = $_SESSION['cart']['coupon_code'] ?? '';
+$_POST['discount'] = $_SESSION['cart']['discount'] ?? 0;
 $_POST['transaction_id']=$post_data['tran_id'];
 $_POST['currency']=$post_data['currency'];
 $_POST['created_at']=date('Y-m-d H:i:s');
@@ -78,7 +78,7 @@ if($rs){
             }
         }
         unset($_SESSION['cart']);
-        # Call the Payment Gateway Library
+
         $sslcz = new SslCommerzNotification();
         $msg = $sslcz->makePayment($post_data, 'hosted');
         if (!is_array($msg)) {
